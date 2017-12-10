@@ -3,6 +3,7 @@
     <wb-module deploy-name="zhuheng001">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
         <property name="context-root" value="/zhuheng001"/>
         <property name="java-output-path" value="/zhuheng001/WebRoot/WEB-INF/classes"/>
     </wb-module>
