@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"    
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+        xmlns:p="http://www.springframework.org/schema/p"  
+        xmlns:aop="http://www.springframework.org/schema/aop"   
+        xmlns:context="http://www.springframework.org/schema/context"  
+        xmlns:jee="http://www.springframework.org/schema/jee"  
+        xmlns:tx="http://www.springframework.org/schema/tx"  
+        xsi:schemaLocation="    
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.2.xsd  
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+            
+    <context:component-scan base-package="sino.java"></context:component-scan>         
+	<context:property-placeholder location="classpath:/sino/java/config/spring/jdbc.properties" /> 
+	
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- 数据库的驱动 -->
+      	<property name="driverClass" value="${jdbc.driver}"/>
+        <!-- 数据库的路径 -->
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+        <!-- 数据库的用户名 -->
+		<property name="user" value="${jdbc.user}"/>
+        <!-- 数据库的密码 -->
+		<property name="password" value="${jdbc.password}"/>
+        <!-- 每300秒检查所有连接池中的空闲连接 -->
+        <property name="idleConnectionTestPeriod" value="300"></property>
+        <!-- 最大空闲时间,900秒内未使用则连接被丢弃。若为0则永不丢弃 -->
+        <property name="maxIdleTime" value="900"></property>
+        <!-- 最大连接数 -->
+        <property name="maxPoolSize" value="2"></property>
+ 		
+    </bean>
+	
+
+	<!-- 
+	<value>
+	    hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+		hibernate.hbm2ddl.auto=update
+	</value>
+	
+	 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		
+		<property name="dataSource" ref="dataSource" />
+		
+		<property name="configLocation">
+			<value>classpath:/sino/java/config/hibernate/hibernate.cfg.xml</value>
+		</property>
+		
+		<property name="mappingResources">
+			<list>
+				<value>/sino/java/config/hibernate/hbm/User.hbm.xml</value>
+			</list>
+		</property>
+		
+		<property name="hibernateProperties">  
+            <props>  
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>  
+                <prop key="show_sql">true</prop>  
+                <prop key="hibernate.jdbc.batch_size">20</prop>  
+            </props>  
+        </property> 
+        
+	</bean>
+	
+  
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager"/>
+
+	
+	<bean id="userAction" class="sino.java.action.UserAction"/>
+
+</beans>
