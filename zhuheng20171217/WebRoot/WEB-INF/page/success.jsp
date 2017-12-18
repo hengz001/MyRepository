@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,6 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my SUCCESS page. <br>
+    This is my SUCCESS page. <br>欢迎${name}登陆
+    
+    <form action="zhuheng/findByPage" method="post">
+    	账号:<input type="text" name="name" id="name"/><br/>
+    	密码:<input type="password" name="password" id="password"/><br/>
+    	<input type="submit" value="注册"/>
+    </form>
   </body>
 </html>

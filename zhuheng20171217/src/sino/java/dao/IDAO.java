@@ -1,5 +1,7 @@
 package sino.java.dao;
 
+import java.io.Serializable;
+
 public interface IDAO {
 	
 	/*
@@ -25,5 +27,5 @@ public interface IDAO {
 	/*
 	 * 
 	 */
-	
+	public <T> void remove(Class<T> entity,  Serializable id);
 }
