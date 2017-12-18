@@ -1,5 +1,7 @@
 package sino.java.service;
 
-public interface UserService {
-	public void save();
+import sino.java.base.BaseDAO;
+
+public interface UserService extends BaseDAO{
+
 }	

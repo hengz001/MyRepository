@@ -2,16 +2,16 @@ package sino.java.action;
 
 import javax.annotation.Resource;
 
-import sino.java.dao.UserDAO;
 import sino.java.po.User;
+import sino.java.service.UserService;
 
 public class UserAction{
 
 	private String name;
 	private String password;
 	
-	@Resource(name="userDAOImpl")
-	private UserDAO ud;
+	@Resource(name="userServiceImpl")
+	private UserService ud;
 	
 	public String execute(){
 		System.out.println("UserAction");

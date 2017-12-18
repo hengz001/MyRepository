@@ -1,11 +1,10 @@
 package sino.java.serviceimpl;
 
+import org.springframework.stereotype.Service;
+import sino.java.base.AbstractDAO;
 import sino.java.service.UserService;
 
-public class UserServiceImpl implements UserService{
-
-	public void save() {
-		System.out.println("UserServiceImpl");
-	}
+@Service
+public class UserServiceImpl extends AbstractDAO implements UserService{
 
 }
