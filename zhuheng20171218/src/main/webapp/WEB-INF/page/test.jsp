@@ -26,18 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	密码:<input type="password" name="password" id="password"/><br/>
     	<input type="submit" value="注册"/>
     </form-->
-    
-    <form id="myform" action="zhuheng/testPage" method="post">
-    	<table cellpadding="0" cellspacing="0" border="0" class="table_case_01">
-    		<tr>
-    			<td colspan="1" style="text-align: right;">
-    				<input type="submit" id="seache" value="测试跳转" onclick="subData()" class="button icon edit"/>
-    			</td>
-    		</tr>
-    	</table>
-    </form>
-  </body>
-  
+	SUCCESS<br/>${date}    
   <!-- script type="text/javascript">
   	function subData(){
   		$("#myform").attr("action","${ctx}/yugh/testPage");

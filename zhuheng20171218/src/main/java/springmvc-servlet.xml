@@ -10,7 +10,7 @@
             http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
     <!-- 启用spring mvc 注解 -->
     <!-- 扫描注解 -->
-    <context:component-scan base-package="org.yugh.controller" />
+    <context:component-scan base-package="sino.java.controller" />
     <!-- <mvc:annotation-driven /> -->
     <!-- 处理请求时返回json字符串的中文乱码问题 -->
     <!-- <mvc:annotation-driven> <mvc:message-converters> <bean class="org.springframework.http.converter.StringHttpMessageConverter"> 
