@@ -6,7 +6,7 @@
 <struts>
 	<include file="struts-default.xml" />
 	<package name="zhuheng" namespace="/" extends="struts-default">
-		<action name="user" class="sino.java.action.UserAction" method="findByPage">
+		<action name="user_*" class="userAction" method="findByPage">
 			<result name="success">/WEB-INF/page/success.jsp</result>
 			<result name="findByPage">/WEB-INF/page/findByPage.jsp</result>
 		</action>

@@ -21,12 +21,11 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 	}
 
 	public T findById(Class<T> entityClass, Serializable id) {
-		System.out.println("find by ID");
 		return getSession().get(entityClass, id);
 	}
 
 	public List<T> findAll(Class<T> entityClass, String sql) {
-		return null;
+		return getSession().createQuery(sql, entityClass).getResultList();
 	}
 
 	public PageView<T> findByPage(Class<T> entityClass, String sql, int pageNo, int pageSize) {
@@ -39,17 +38,36 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 
 	public PageView<T> findByPage(Class<T> entityClass, String sql, Object[] keys, int pageNo, int pageSize) {
 		PageView<T> pv = new PageView<T>();
-		getTotal(sql, keys);
+		int totalNo = getTotal(sql, keys,entityClass);
+		pv.setTotalNo(totalNo);
+		Query<T> query = getSession().createQuery(sql,entityClass);
+		if(null!=keys && keys.length>0){
+			for (int j = 0; j < keys.length; j++) {
+				query.setParameter(j, keys[j]);
+			}
+		}
+		query.setFirstResult(pageNo);
+		query.setMaxResults(pageSize);
+		List<T> pageList = query.getResultList();
+		if(null != pageList){
+			pv.setPageList(pageList);
+		}
 		return pv;
 	}
 	
-	private int getTotal(String sql,Object[] keys){
+	private int getTotal(String sql,Object[] keys,Class<T> entityClass){
 		int totalNo = 0;
-		Query query = getSession().createQuery(sql);
+		Query<T> query = getSession().createQuery(sql,entityClass);
+		if(null!=keys && keys.length>0){
+			for (int j = 0; j < keys.length; j++) {
+				query.setParameter(j, keys[j]);
+			}
+		}
 		List<T> list = query.getResultList();
 		if(null != list){
 			totalNo = list.size();
 		}
 		return totalNo;
 	}
+	
 }

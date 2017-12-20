@@ -24,7 +24,7 @@ public class UserAction{
 	private UserServiceFind udf;
 	
 	public String execute(){
-		System.out.println("UserAction");
+		System.out.println("UserAction execute");
 		System.out.println("name:"+name+"\r\npassword:"+password);
 		User user = new User();
 		user.setName(name);
