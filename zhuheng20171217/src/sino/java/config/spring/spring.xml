@@ -34,14 +34,6 @@
  		
     </bean>
 	
-
-	<!-- 
-	<value>
-	    hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
-		hibernate.hbm2ddl.auto=update
-	</value>
-	
-	 -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		

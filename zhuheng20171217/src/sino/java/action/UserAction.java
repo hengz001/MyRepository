@@ -42,7 +42,6 @@ public class UserAction{
 		}
 		
 		pv = udf.findByPage(User.class, "from User u", pageNo, pageSize);
-		System.out.println(pv.getPageList().size());
 		return "findByPage";
 	}
 	
