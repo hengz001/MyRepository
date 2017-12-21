@@ -46,8 +46,7 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 				query.setParameter(j, keys[j]);
 			}
 		}
-		query.setFirstResult(pageNo);
-		query.setMaxResults(pageSize);
+		query.setFirstResult((pageNo-1)*pageSize).setMaxResults(pageSize);
 		List<T> pageList = query.getResultList();
 		if(null != pageList){
 			pv.setPageList(pageList);

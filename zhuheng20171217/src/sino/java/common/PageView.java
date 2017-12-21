@@ -18,7 +18,7 @@ public class PageView<T> {
 		if(totalNo%pageSize==0){
 			totalPage = totalNo/pageSize;
 		}else{
-			totalPage = totalNo/pageSize+1;
+			totalPage = (totalNo/pageSize)+1;
 		}
 		return totalPage;
 	}
