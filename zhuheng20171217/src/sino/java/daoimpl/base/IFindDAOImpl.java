@@ -7,8 +7,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sino.java.common.PageView;
-import sino.java.dao.IFindDAO;
+
+import sino.java.dao.base.IFindDAO;
+import sino.java.po.common.PageView;
 
 @Service
 public class IFindDAOImpl<T> implements IFindDAO<T>{

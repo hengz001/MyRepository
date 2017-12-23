@@ -1,9 +1,9 @@
-package sino.java.dao;
+package sino.java.dao.base;
 
 import java.io.Serializable;
 import java.util.List;
 
-import sino.java.common.PageView;
+import sino.java.po.common.PageView;
 
 public interface IFindDAO<T> {
 	

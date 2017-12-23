@@ -1,10 +1,9 @@
 package sino.java.daoimpl.base;
-
 import java.util.Collection;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
-import sino.java.dao.IDAO;
 import sino.java.dao.base.BaseDAO;
+import sino.java.dao.base.IDAO;
 
 @Service
 public abstract class AbstractDAO extends IDAOImpl implements BaseDAO{

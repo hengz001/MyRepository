@@ -31,14 +31,11 @@
         <property name="maxIdleTime" value="900"></property>
         <!-- 最大连接数 -->
         <property name="maxPoolSize" value="2"></property>
- 		
     </bean>
 	
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		
 		<property name="dataSource" ref="dataSource" />
-    
         <property name="hibernateProperties">
             <props>
                 <!-- 
@@ -50,27 +47,24 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
-		
 		<property name="configLocation">
 			<value>classpath:/sino/java/config/hibernate/hibernate.cfg.xml</value>
 		</property>
-	
 		<!-- 
-		 -->
 		<property name="mappingResources">
 			<list>
 				<value>/sino/java/config/hibernate/hbm/User.hbm.xml</value>
 				<value>/sino/java/config/hibernate/hbm/Dep.hbm.xml</value>
 			</list>
 		</property>
+		 -->
 		<!-- 
+		 -->		 
 		 <property name="mappingDirectoryLocations">
 			<list>
 				<value>classpath:\sino\java\config\hibernate\hbm</value>
 			</list>
 		</property>
-		 -->		 
-
 	</bean>
 	
 	 <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
@@ -82,7 +76,4 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager"/>
-
-	<bean id="userAction" class="sino.java.action.user.UserAction"/>
-
 </beans>

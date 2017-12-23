@@ -1,4 +1,4 @@
-package sino.java.common;
+package sino.java.po.common;
 
 import java.util.List;
 

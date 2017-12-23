@@ -5,11 +5,11 @@
 
 <struts>
 	<include file="struts-default.xml" />
-	<package name="zhuheng" namespace="/" extends="struts-default">
-		<action name="user_*" class="userAction" method="{1}">
-			<result name="show">/WEB-INF/page/user/index2.jsp</result>
-			<result name="success">/WEB-INF/page//user/success.jsp</result>
-			<result name="findByPage">/WEB-INF/page//user/findByPage.jsp</result>
+	<package name="user" namespace="/" extends="struts-default">
+		<action name="user_*" class="sino.java.action.user.UserAction" method="{1}">
+			<result name="show">/WEB/page/user/index2.jsp</result>
+			<result name="success" type="chain">user_findByPage</result>
+			<result name="findByPage">/WEB/page/user/findByPage.jsp</result>
 		</action>
 	</package>
 </struts>

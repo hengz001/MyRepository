@@ -6,8 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import sino.java.dao.IDAO;
+import sino.java.dao.base.IDAO;
 
 @Service
 public class IDAOImpl implements IDAO{

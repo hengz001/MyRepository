@@ -1,6 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
-<%@taglib uri="/struts-tags" prefix="s" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,32 +21,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	<table>
-		<tr>
-			<td>ID</td>
-			<td>NAME</td>
-			<td>PASSWORD</td>
-		</tr>			
-		<s:iterator value="pv.pageList">
-			<tr>
-				<td><s:property value="id"/></td>
-				<td><s:property value="name"/></td>
-				<td><s:property value="password"/></td>
-			</tr>
-		</s:iterator>
-		<tr>
-			<td><a href="zhuheng/user_findByPage?page=${pm.firstPage}">首页</a></td>
-			<td><a href="zhuheng/user_findByPage?page=${pm.previousPageNo}">上一页</a></td>
-			<td><a href="zhuheng/user_findByPage?page=${pm.nextPageNo}">下一页</a></td>
-			<td><a href="zhuheng/user_findByPage?page=${pm.totalPage}">末页</a></td>
-		</tr>
-	</table>    
-    <!-- form action="zhuheng/findByPage" method="post">
-	    This is my SUCCESS page. <br>欢迎${name}登陆
+    <form action="dep/dep_execute" method="post">
     	账号:<input type="text" name="name" id="name"/><br/>
     	密码:<input type="password" name="password" id="password"/><br/>
     	<input type="submit" value="注册"/>
     </form>
-     -->
+    <a href="zhuheng/user_findByPage">忘记密码</a>
   </body>
 </html>

@@ -1,8 +1,9 @@
 package sino.java.action.user;
 
 import javax.annotation.Resource;
-import sino.java.common.PageModel;
-import sino.java.common.PageView;
+
+import sino.java.po.common.PageModel;
+import sino.java.po.common.PageView;
 import sino.java.po.user.User;
 import sino.java.service.user.UserService;
 import sino.java.service.user.UserServiceFind;

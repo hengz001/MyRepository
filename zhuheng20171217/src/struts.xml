@@ -17,5 +17,5 @@
 	<!-- 默认的视图主题 -->
 	<constant name="struts.ui.theme" value="simple" />
 	
-	<include file="sino/java/config/struts/user.xml"></include>
+	<include file="sino/java/config/struts/*.xml"></include>
 </struts>

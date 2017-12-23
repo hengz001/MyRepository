@@ -21,6 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my SUCCESS page. <br>欢迎${name}登陆
+    <form action="user/user_execute" method="post">
+    	账号:<input type="text" name="name" id="name"/><br/>
+    	密码:<input type="password" name="password" id="password"/><br/>
+    	<input type="submit" value="注册"/>
+    </form>
   </body>
 </html>
