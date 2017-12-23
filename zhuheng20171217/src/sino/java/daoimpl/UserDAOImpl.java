@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
 import sino.java.dao.UserDAO;
-import sino.java.po.User;
+import sino.java.po.user.User;
 
 @Service
 public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{

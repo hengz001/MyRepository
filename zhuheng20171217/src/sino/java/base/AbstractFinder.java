@@ -8,7 +8,7 @@ import sino.java.common.PageView;
 import sino.java.dao.IFindDAO;
 
 @Service
-public  class AbstrctFinder<T> implements BaseFinder<T>{
+public  class AbstractFinder<T> implements BaseFinder<T>{
 	
 	@Resource(name="IFindDAOImpl")
 	private IFindDAO<T> iFindDao;

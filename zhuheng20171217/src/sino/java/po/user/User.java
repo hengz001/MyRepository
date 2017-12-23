@@ -1,4 +1,4 @@
-package sino.java.po;
+package sino.java.po.user;
 
 public class User {
 

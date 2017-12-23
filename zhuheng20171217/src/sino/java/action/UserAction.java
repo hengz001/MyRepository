@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 
 import sino.java.common.PageModel;
 import sino.java.common.PageView;
-import sino.java.po.User;
+import sino.java.po.user.User;
 import sino.java.service.UserService;
 import sino.java.service.UserServiceFind;
 
