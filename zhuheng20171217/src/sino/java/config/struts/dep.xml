@@ -9,6 +9,9 @@
 		<action name="dep_*" class="sino.java.action.dep.DepAction" method="{1}">
 			<result name="show">/WEB/page/dep/index3.jsp</result>
 			<result name="index">/WEB/page/dep/departmentManage.jsp</result>
+			<result name="showAddDep">/WEB/page/dep/addDepartment.jsp</result>
+			<result name="addDep">/WEB/page/common/close.html</result>
+			<result name="deleteDep">/WEB/page/common/close.html</result>
 		</action>
 	</package>
 </struts>

@@ -9,12 +9,12 @@
 			<generator class="native"></generator>
 		</id>
 
-		<property name="dep_sn"></property>
-		<property name="dep_name"></property>
-		<property name="dep_desc"></property>
-		<property name="flag"></property>
+		<property name="dep_sn" type="java.lang.String"></property>
+		<property name="dep_name" type="java.lang.String"></property>
+		<property name="dep_desc" type="java.lang.String"></property>
+		<property name="flag" type="java.lang.String"></property>
 		
-		<many-to-one column="pid" name="parent"/>
+		<many-to-one column="pid" name="parent" class="Department"/>
 		<set name="child" lazy="false" inverse="true">
 			<key column="pid"/>
 			<one-to-many class="Department"/>

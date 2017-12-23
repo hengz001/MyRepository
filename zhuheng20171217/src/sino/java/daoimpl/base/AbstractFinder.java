@@ -10,7 +10,7 @@ import sino.java.dao.base.IFindDAO;
 import sino.java.po.common.PageView;
 
 @Service
-public  class AbstractFinder<T> implements BaseFinder<T>{
+public  class AbstractFinder<T> extends AbstractDAO implements BaseFinder<T>{
 	
 	@Resource(name="IFindDAOImpl")
 	private IFindDAO<T> iFindDao;
@@ -42,4 +42,5 @@ public  class AbstractFinder<T> implements BaseFinder<T>{
 	public void setiFindDao(IFindDAO<T> iFindDao) {
 		this.iFindDao = iFindDao;
 	}
+
 }

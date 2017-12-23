@@ -2,7 +2,7 @@ package sino.java.dao.base;
 
 import java.util.Collection;
 
-public interface BaseDAO {
+public interface BaseDAO extends IDAO{
 	/*
 	 * 
 	 */

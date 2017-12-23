@@ -12,7 +12,7 @@ import sino.java.dao.base.IFindDAO;
 import sino.java.po.common.PageView;
 
 @Service
-public class IFindDAOImpl<T> implements IFindDAO<T>{
+public class IFindDAOImpl<T> extends AbstractDAO implements IFindDAO<T>{
 	
 	@Autowired
 	private SessionFactory sessionFactory;

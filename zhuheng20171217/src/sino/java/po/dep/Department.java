@@ -53,14 +53,6 @@ public class Department implements Serializable {
 		this.dep_sn = dep_sn;
 	}
 
-	public Department getparent() {
-		return parent;
-	}
-
-	public void setparent(Department parent) {
-		this.parent = parent;
-	}
-
 	public Set<Department> getChild() {
 		return child;
 	}
