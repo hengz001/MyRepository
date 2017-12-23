@@ -7,8 +7,9 @@
 	<include file="struts-default.xml" />
 	<package name="zhuheng" namespace="/" extends="struts-default">
 		<action name="user_*" class="userAction" method="{1}">
-			<result name="success">/WEB-INF/page/success.jsp</result>
-			<result name="findByPage">/WEB-INF/page/findByPage.jsp</result>
+			<result name="show">/WEB-INF/page/user/index2.jsp</result>
+			<result name="success">/WEB-INF/page//user/success.jsp</result>
+			<result name="findByPage">/WEB-INF/page//user/findByPage.jsp</result>
 		</action>
 	</package>
 </struts>

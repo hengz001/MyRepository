@@ -1,12 +1,11 @@
-package sino.java.action;
+package sino.java.action.user;
 
 import javax.annotation.Resource;
-
 import sino.java.common.PageModel;
 import sino.java.common.PageView;
 import sino.java.po.user.User;
-import sino.java.service.UserService;
-import sino.java.service.UserServiceFind;
+import sino.java.service.user.UserService;
+import sino.java.service.user.UserServiceFind;
 
 public class UserAction{
 
@@ -27,8 +26,6 @@ public class UserAction{
 	private UserServiceFind udf;
 	
 	public String execute(){
-		System.out.println("UserAction execute");
-		System.out.println("name:"+name+"\r\npassword:"+password);
 		User user = new User();
 		user.setName(name);
 		user.setPassword(password);
@@ -37,7 +34,6 @@ public class UserAction{
 	}
 	
 	public String findByPage(){
-		System.out.println("UserAction findByPage");
 		int pageNo=1;
 		int pageSize=3;
 		if(page!=null){
@@ -47,13 +43,16 @@ public class UserAction{
 		pv = udf.findByPage(User.class, "from User u", pageNo, pageSize);
 		pv.setPageNo(pageNo);
 		pv.setPageSize(pageSize);;
-		//System.out.println(pv.getPageList().size());
 		pm = new PageModel();
 		pm.setFirstPage(1);
 		pm.setTotalPage(pv.getTotalPage());
 		pm.setPreviousPageNo(pv.getProviousPageNo());
 		pm.setNextPageNo(pv.getNextPageNo());
 		return "findByPage";
+	}
+	
+	public String show(){
+		return "show";
 	}
 	
 	public String getName() {

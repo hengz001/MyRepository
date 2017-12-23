@@ -1,4 +1,4 @@
-package sino.java.service;
+package sino.java.service.user;
 
 import sino.java.base.BaseDAO;
 

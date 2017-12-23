@@ -21,11 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="zhuheng/user_execute" method="post">
-    	账号:<input type="text" name="name" id="name"/><br/>
-    	密码:<input type="password" name="password" id="password"/><br/>
-    	<input type="submit" value="注册"/>
-    </form>
-    <a href="zhuheng/user_findByPage">忘记密码</a>
+     <a href="zhuheng/user_show">用戶</a>
   </body>
 </html>

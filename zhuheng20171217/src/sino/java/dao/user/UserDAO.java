@@ -1,4 +1,4 @@
-package sino.java.dao;
+package sino.java.dao.user;
 
 import sino.java.po.user.User;
 

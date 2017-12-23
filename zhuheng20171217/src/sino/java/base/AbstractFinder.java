@@ -13,14 +13,6 @@ public  class AbstractFinder<T> implements BaseFinder<T>{
 	@Resource(name="IFindDAOImpl")
 	private IFindDAO<T> iFindDao;
 
-	public IFindDAO<T> getiFindDao() {
-		return iFindDao;
-	}
-
-	public void setiFindDao(IFindDAO<T> iFindDao) {
-		this.iFindDao = iFindDao;
-	}
-
 	public T findById(Class<T> entityClass, Serializable id) {
 		return iFindDao.findById(entityClass, id);
 	}
@@ -39,5 +31,13 @@ public  class AbstractFinder<T> implements BaseFinder<T>{
 
 	public PageView<T> findByPage(Class<T> entityClass, String sql, Object[] keys, int pageNo, int pageSize) {
 		return iFindDao.findByPage(entityClass, sql, keys, pageNo, pageSize);
+	}
+	
+	public IFindDAO<T> getiFindDao() {
+		return iFindDao;
+	}
+	
+	public void setiFindDao(IFindDAO<T> iFindDao) {
+		this.iFindDao = iFindDao;
 	}
 }

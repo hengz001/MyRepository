@@ -83,7 +83,6 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager"/>
 
-	
-	<bean id="userAction" class="sino.java.action.UserAction"/>
+	<bean id="userAction" class="sino.java.action.user.UserAction"/>
 
 </beans>
