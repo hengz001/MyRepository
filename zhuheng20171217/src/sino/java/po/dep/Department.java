@@ -19,6 +19,24 @@ public class Department implements Serializable {
 	
 	private String dep_desc;
 
+	private String flag;
+	
+	public Department getParent() {
+		return parent;
+	}
+
+	public void setParent(Department parent) {
+		this.parent = parent;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
 	public int getDep_id() {
 		return dep_id;
 	}

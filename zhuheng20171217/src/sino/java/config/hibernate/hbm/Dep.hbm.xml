@@ -12,6 +12,7 @@
 		<property name="dep_sn"></property>
 		<property name="dep_name"></property>
 		<property name="dep_desc"></property>
+		<property name="flag"></property>
 		
 		<many-to-one column="pid" name="parent"/>
 		<set name="child" lazy="false" inverse="true">
