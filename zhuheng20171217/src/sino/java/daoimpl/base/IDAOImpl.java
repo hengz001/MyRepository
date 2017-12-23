@@ -1,4 +1,4 @@
-package sino.java.daoimpl;
+package sino.java.daoimpl.base;
 
 import java.io.Serializable;
 

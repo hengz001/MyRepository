@@ -1,4 +1,4 @@
-package sino.java.base;
+package sino.java.dao.base;
 
 import sino.java.dao.IFindDAO;
 

@@ -1,4 +1,4 @@
-package sino.java.base;
+package sino.java.daoimpl.base;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import sino.java.common.PageView;
 import sino.java.dao.IFindDAO;
+import sino.java.dao.base.BaseFinder;
 
 @Service
 public  class AbstractFinder<T> implements BaseFinder<T>{
