@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+    f
     <title>My JSP 'addDepartment.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 					  <td height="20" style="height:20px; line-height:20px;vertical-align:middle" valign="middle">
-					  <a href="#" style="height:14px;line-height:14px;">&laquo;返回部门管理</a>
+					  <a href="" style="height:14px;line-height:14px;">&laquo;返回部门管理</a>
 					  </td>
 				  </tr>
 				</table>

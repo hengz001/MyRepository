@@ -5,7 +5,7 @@ import java.util.List;
 
 import sino.java.po.common.PageView;
 
-public interface IFindDAO<T> extends BaseDAO{
+public interface IFindDAO<T> {
 	
 	public T findById(Class<T> entityClass,Serializable id);
 	

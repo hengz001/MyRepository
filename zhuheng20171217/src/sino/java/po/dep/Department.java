@@ -19,7 +19,7 @@ public class Department implements Serializable {
 	
 	private String dep_desc;
 
-	private String flag;
+	private int flag;
 	
 	public Department getParent() {
 		return parent;
@@ -29,11 +29,11 @@ public class Department implements Serializable {
 		this.parent = parent;
 	}
 
-	public String getFlag() {
+	public int getFlag() {
 		return flag;
 	}
 
-	public void setFlag(String flag) {
+	public void setFlag(int flag) {
 		this.flag = flag;
 	}
 

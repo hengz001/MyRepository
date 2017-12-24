@@ -6,13 +6,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import sino.java.dao.base.IFindDAO;
 import sino.java.po.common.PageView;
 
-@Service
-public class IFindDAOImpl<T> extends AbstractDAO implements IFindDAO<T>{
+@Repository("iFindDAO")
+@Transactional
+public class IFindDAOImpl<T> implements IFindDAO<T>{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -22,7 +24,7 @@ public class IFindDAOImpl<T> extends AbstractDAO implements IFindDAO<T>{
 	}
 
 	public T findById(Class<T> entityClass, Serializable id) {
-		return getSession().get(entityClass, id);
+		return getSession().find(entityClass, id);
 	}
 
 	public List<T> findAll(Class<T> entityClass, String sql) {
@@ -47,7 +49,8 @@ public class IFindDAOImpl<T> extends AbstractDAO implements IFindDAO<T>{
 				query.setParameter(j, keys[j]);
 			}
 		}
-		query.setFirstResult((pageNo-1)*pageSize).setMaxResults(pageSize);
+//		query.setFirstResult((pageNo-1)*pageSize).setMaxResults(pageSize);
+		query.setFirstResult(pageNo).setMaxResults(pageSize);
 		List<T> pageList = query.getResultList();
 		if(null != pageList){
 			pv.setPageList(pageList);

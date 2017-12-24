@@ -59,8 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!-- 箭头 -->
 					<img style="position:absolute;
 							left:172px;top:125px"
-							src="WEB/imgs/down_point.jpg">
-					</img>
+							src="WEB/imgs/down_point.jpg"/>
 					
 					
 					<!-- 查看流程定义 -->

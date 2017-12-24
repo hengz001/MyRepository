@@ -45,6 +45,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var depId = $('#depId').val();
 			document.location = "dep/dep_deleteDep.action?depId="+depId;
 		}
+		
+		function updateDep(){
+			var depId = $('#depId').val();
+			var depSn = $('#depSn').val();
+			var depDesc = $('#depDesc').val();
+			var depName = $('#depName').val();
+			document.location = "dep/dep_updateDep.action?depId="+depId+"&depName="+depName+"&depSn="+depSn+"&depDesc="+depDesc;
+		}
+		function findPageDep(){
+			//document.location = "dep/dep_findByPage.action";
+			$('#f2').submit();
+		}
 	</script>
   </head>
   
@@ -79,9 +91,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							}
 							if(dep.getChild().size()!=0){
 								for(Department dep2:dep.getChild()){
-									%>
-									d.add(<%=dep2.getDep_id()%>,<%=depId%>,'<%=dep2.getDep_name()%>',"javascript:void(showDep('"+<%=dep2.getDep_id()%>+"','"+'<%=dep2.getDep_name()%>'+"','"+'<%=dep2.getDep_sn()%>'+"','"+'<%=dep2.getDep_desc()%>'+"','"+'<%=dep2.getParent().getDep_name()%>'+"'))");	
-									<%
+									if(1 == dep.getFlag()){
+										%>
+										d.add(<%=dep2.getDep_id()%>,<%=depId%>,'<%=dep2.getDep_name()%>',"javascript:void(showDep('"+<%=dep2.getDep_id()%>+"','"+'<%=dep2.getDep_name()%>'+"','"+'<%=dep2.getDep_sn()%>'+"','"+'<%=dep2.getDep_desc()%>'+"','"+'<%=dep2.getParent().getDep_name()%>'+"'))");	
+										<%
+									}
 								}
 							}
 						}
@@ -114,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left">
+							<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="updateDep()">
 									修改
 							</div>
 							<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="showAddDep()">
@@ -132,18 +146,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td colspan="2" align="left" style="height:100px">
 				<fieldset style="border:1px solid #cccccc; height:100px">
 					<legend>查找部门</legend>
-					<table width="98%" class="tinfo">
-						<tr>
-							<td width="100%" align="center"><input type="radio" />按编号查询&nbsp;&nbsp;<input type="radio" />按名称查询 </td>
-						</tr>
-						<tr>
-							<td align="center">查询条件:<input type="text"  />
-							<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:right">
-									查询
-							</div>
-							</td>
-						</tr>
-					</table>
+					<form action="bfdep/dep_findByPage" method="post" id="f2">
+						<table width="98%" class="tinfo">
+							<tr>
+								<td width="100%" align="center"><input type="radio" />按编号查询&nbsp;&nbsp;<input type="radio" />按名称查询 </td>
+							</tr>
+							<tr>
+								<td align="center">查询条件:<input type="text" name="type" id="type"/>
+								<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:right" onclick="findPageDep()">
+										查询
+								</div>
+								</td>
+							</tr>
+						</table>
+					</form>
 				</fieldset>
 
 			</td>	

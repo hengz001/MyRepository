@@ -4,15 +4,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import sino.java.po.common.PageView;
 import sino.java.po.dep.Department;
 import sino.java.service.dep.DepService;
+import sino.java.service.dep.DepServiceFind;
 
 public class DepAction implements RequestAware{
 
 	@Autowired
 	DepService depService;
+	
+	@Autowired
+	DepServiceFind depServiceFind;
 	
 	private List<Department> deps = new ArrayList<Department>();
 	
@@ -21,16 +29,21 @@ public class DepAction implements RequestAware{
 	private Department department;
 	
 	private int depId;
+	private String depName;
+	private String depSn;
+	private String depDesc;
+	
+	private String type;
 	
 	public String execute(){
-		deps = depService.findAll(Department.class, 
-										"from Department d where d.flag=1");
+		deps = depServiceFind.findAll(Department.class, 
+				"from Department d where d.flag=1");
 		request.put("depAll", deps);
 		return "index";
 	}
 	
 	public String showAddDep(){
-		deps = depService.findAll(Department.class, 
+		deps = depServiceFind.findAll(Department.class, 
 				"from Department d where d.flag=1");
 		return "showAddDep";
 	}
@@ -41,11 +54,44 @@ public class DepAction implements RequestAware{
 	}
 	
 	public String deleteDep(){
-		System.out.println("depId------------>"+depId);
-		
-		Department obj = depService.findById(Department.class, depId);
-		
+		if(0 != depId){
+			depService.deleteByLogic(Department.class,new Serializable[]{depId}, "dep_id", "flag");
+		}
 		return "deleteDep";
+	}
+	
+	public String updateDep(){
+		if(0 != depId){
+			Department dep = new Department();
+			dep.setDep_id(depId);
+			dep.setDep_sn(depSn);
+			dep.setDep_name(depName);
+			dep.setDep_desc(depDesc);
+			dep.setFlag(1);
+			depService.saveOrUpdate(dep);
+		}
+		return "updateDep";
+	}
+	
+	public String findByPage(){
+		int pageNo = 0;
+		String pageNo_str = ServletActionContext.getRequest().getParameter("pager.offset");
+		if(null != pageNo_str){
+			System.out.println(pageNo_str);
+			pageNo = Integer.parseInt(pageNo_str);
+		}
+		int pageSize = 5;
+		PageView<Department> pv;
+		if(null != type && !type.equals("")){
+			System.out.println("------------------>"+type);
+			pv = depServiceFind.findByPage(Department.class, 
+					"FROM Department d WHERE d.dep_name=?",type,pageNo, pageSize);
+		}else{
+			pv = depServiceFind.findByPage(Department.class, "FROM Department d", pageNo, pageSize);
+		}
+		
+		request.put("pv", pv);
+		return "findByPage";
 	}
 	
 	public String show(){
@@ -78,5 +124,37 @@ public class DepAction implements RequestAware{
 
 	public void setDepId(int depId) {
 		this.depId = depId;
+	}
+
+	public String getDepName() {
+		return depName;
+	}
+
+	public void setDepName(String depName) {
+		this.depName = depName;
+	}
+
+	public String getDepSn() {
+		return depSn;
+	}
+
+	public void setDepSn(String depSn) {
+		this.depSn = depSn;
+	}
+
+	public String getDepDesc() {
+		return depDesc;
+	}
+
+	public void setDepDesc(String depDesc) {
+		this.depDesc = depDesc;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

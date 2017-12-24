@@ -29,5 +29,6 @@ public interface IDAO {
 	 */
 	public <T> void remove(Class<T> entity,  Serializable id);
 	
+	
 	public <T> void deleteByLogic(Class<T> entity,Serializable[] ids,String id,String flag);
 }

@@ -11,6 +11,11 @@
         <!-- 新增导入包为pom引用包(版本最新) -->
         <!-- https://mvnrepository.com/ -->
         <dependency>
+		    <groupId>jsptags</groupId>
+		    <artifactId>pager-taglib</artifactId>
+		    <version>2.0</version>
+		</dependency>
+        <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk16</artifactId>
             <version>1.46</version>
