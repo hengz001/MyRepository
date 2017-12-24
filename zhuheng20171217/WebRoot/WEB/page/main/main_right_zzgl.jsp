@@ -61,9 +61,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="iconButton" style="position:absolute;left:280px; top:100px">
 					 <div class="iconImage" 
 						 style="background-image:url(WEB/imgs/icos/yggl.jpg);" 
-						 onclick="document.location='#'">
+						 onclick="openWindow('emp/emp_index.action',600,500,'emp')">
 					 </div>
-					 <div style="text-align:center; line-height:20px" onclick="document.location='#'">员工管理</div>
+					 <div style="text-align:center; line-height:20px" onclick="openWindow('emp/emp_index.action',600,500,'emp')">员工管理</div>
 					</div>
 				</td>
 				<td></td>

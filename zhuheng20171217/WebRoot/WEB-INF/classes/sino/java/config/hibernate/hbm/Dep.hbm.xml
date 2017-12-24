@@ -2,7 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC
                             "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                             "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-
 <hibernate-mapping package="sino.java.po.dep">
 	<class name="Department" table="tb_dep">
 		<id name="dep_id">
@@ -22,3 +21,10 @@
 	</class>
 </hibernate-mapping>
 
+	
+	
+	
+	
+	
+	
+	
