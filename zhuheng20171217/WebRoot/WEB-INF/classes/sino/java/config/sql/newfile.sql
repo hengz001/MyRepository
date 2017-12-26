@@ -3,8 +3,9 @@ USE database_zh;
 /*
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS tb_dep;
-DROP TABLE IF　EXISTS tb_emp;
+DROP TABLE  IF EXISTS tb_emp;
 */
+
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `tb_dep` (
 CREATE TABLE IF NOT EXISTS `tb_emp` (
   `emp_id` int(11) NOT NULL AUTO_INCREMENT,
   `emp_name` varchar(255) DEFAULT NULL,
+  `emp_sn` varchar(255) DEFAULT NULL,
   `emp_sex` varchar(255) DEFAULT NULL,
   `emp_address` varchar(255) DEFAULT NULL,
   `emp_phone` varchar(255) DEFAULT NULL,

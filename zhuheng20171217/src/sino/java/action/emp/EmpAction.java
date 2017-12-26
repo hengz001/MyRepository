@@ -1,31 +1,101 @@
 package sino.java.action.emp;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import sino.java.po.common.PageView;
 import sino.java.po.dep.Department;
+import sino.java.po.emp.Employee;
 import sino.java.service.dep.DepServiceFind;
+import sino.java.service.emp.EmpService;
+import sino.java.service.emp.EmpServiceFind;
 
 public class EmpAction {
 	
 	@Autowired
 	private DepServiceFind depServiceFind;
 	
-	private String pid;
+	@Autowired
+	private EmpService empService;
+	
+	@Autowired
+	private EmpServiceFind empServiceFind;
+	
+	private File image;
+	
+	private String imageFileName;
+	
+	private Employee emp = new Employee();
+	
+	private String depId;
 	
 	public String execute(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int pageSize = 5;
+		int pageNo = 0;
+		String pageNo_str = request.getParameter("pager.offset");
+		if(null != pageNo_str){
+			pageNo = Integer.parseInt(pageNo_str); 
+		}
+		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e",pageNo,pageSize);
+		request.setAttribute("pv",pv);
 		return "index";
+	}
+	
+	//add employee
+	public String addEmp(){
+		String path = "/WEB/imgs/emp";
+		int dep_id = 0;
+		
+		String realPath = ServletActionContext.getServletContext().getRealPath(path);
+		System.out.println(realPath);
+		System.out.println(imageFileName);
+//		java.io.File.<init>(File.java:317)
+		if(null == imageFileName){
+			return null;
+		}
+		File saveFile = new File(new File(realPath),imageFileName);
+		if(!saveFile.getParentFile().exists()){
+			saveFile.getParentFile().mkdirs();
+		}
+		try {
+			FileUtils.copyFile(image, saveFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(depId != null && !"".equals(depId)){
+			dep_id = Integer.parseInt(depId);
+		}
+		emp.setDep(depServiceFind.findById(Department.class, dep_id));
+		emp.setEmp_img(path+imageFileName);
+		empService.save(emp);
+		return "addEmp";
 	}
 	
 	//home page
 	public String index(){
 		List<Department> deps = depServiceFind.findAll(Department.class, "FROM Department d WHERE d.parent=null AND d.flag = 1");
 		ServletActionContext.getRequest().setAttribute("deps", deps);
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int pageSize = 5;
+		int pageNo = 0;
+		String pageNo_str = request.getParameter("pager.offset");
+		if(null != pageNo_str){
+			pageNo = Integer.parseInt(pageNo_str); 
+		}
+		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e",pageNo,pageSize);
+		request.setAttribute("pv",pv);
+		
 		return "index";
 	}
 	
@@ -34,10 +104,10 @@ public class EmpAction {
 		HttpServletResponse response;
 		PrintWriter out;
 		
-		if(null == pid || pid.equals("")){
+		if(null == depId || depId.equals("")){
 			return null;
 		}
-		iPid = Integer.parseInt(pid);
+		iPid = Integer.parseInt(depId);
 		List<Department> deps = depServiceFind.findAll(Department.class, "FROM Department d WHERE d.flag=1 AND d.parent.dep_id="+iPid);
 		response = ServletActionContext.getResponse();
 		response.setHeader("Pragma", "no-cache");
@@ -61,11 +131,35 @@ public class EmpAction {
 		return null;
 	}
 
-	public String getPid() {
-		return pid;
+	public String getDepId() {
+		return depId;
 	}
 
-	public void setPid(String pid) {
-		this.pid = pid;
+	public void setDepId(String depId) {
+		this.depId = depId;
+	}
+
+	public File getImage() {
+		return image;
+	}
+
+	public void setImage(File image) {
+		this.image = image;
+	}
+
+	public String getImageFileName() {
+		return imageFileName;
+	}
+
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
+
+	public Employee getEmp() {
+		return emp;
+	}
+
+	public void setEmp(Employee emp) {
+		this.emp = emp;
 	}
 }

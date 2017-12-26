@@ -12,6 +12,8 @@ public class Employee implements Serializable{
 	
 	private String emp_name;
 	
+	private String emp_sn;
+	
 	private String emp_sex;
 	
 	private String emp_address;
@@ -26,6 +28,14 @@ public class Employee implements Serializable{
 	
 	public int getEmp_id() {
 		return emp_id;
+	}
+
+	public String getEmp_sn() {
+		return emp_sn;
+	}
+
+	public void setEmp_sn(String emp_sn) {
+		this.emp_sn = emp_sn;
 	}
 
 	public void setEmp_id(int emp_id) {

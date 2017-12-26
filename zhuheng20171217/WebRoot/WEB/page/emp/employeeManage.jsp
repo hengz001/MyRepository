@@ -4,6 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -26,30 +27,30 @@
 	function buttonHover(obj) {
 		obj.style.backgroundImage = "url('WEB/imgs/button_hover.jpg')";
 	}
-	
-	function find_test(){
+
+	function find_test() {
 		var pid = $('#s1').val();
-		var url = "emp/emp_findByDep.action?pid="+pid;
-		$.get(url,null,function(data){
-			   var dom = data.getElementsByTagName("subDep");
-			   alert(dom.length);
-			   var s2 = document.getElementById("s2");
-			   t_clear();
-			   for(i=0;i<dom.length;i++) {
-				   var dep_name = (dom[i].getElementsByTagName("subDep-name")[0]).firstChild.data;
-				   var dep_id = (dom[i].getElementsByTagName("subDep-id")[0]).firstChild.data;
-				   s2[i] = new Option(dep_name,dep_id);
-			   }
-		   });
+		var url = "emp/emp_findByDep.action?depId=" + depId;
+		$.get(url, null, function(data) {
+			var dom = data.getElementsByTagName("subDep");
+			alert(dom.length);
+			var s2 = document.getElementById("s2");
+			t_clear();
+			for (i = 0; i < dom.length; i++) {
+				var dep_name = (dom[i].getElementsByTagName("subDep-name")[0]).firstChild.data;
+				var dep_id = (dom[i].getElementsByTagName("subDep-id")[0]).firstChild.data;
+				s2[i] = new Option(dep_name, dep_id);
+			}
+		});
 	}
-	
+
 	function t_clear() {
-		   var s2 = document.getElementById("s2");
-		   var sLength = s2.length;
-		   for(i=0;i<sLength;i++) {
-			   s2.options[i] = null;
-		   }
-	   }
+		var s2 = document.getElementById("s2");
+		var sLength = s2.length;
+		for (i = 0; i < sLength; i++) {
+			s2.options[i] = null;
+		}
+	}
 </script>
 
 <style type="text/css">
@@ -210,27 +211,19 @@ form {
 						<td align="center" width="50" height="25" class="th_1">操作</td>
 
 					</tr>
+					<s:iterator value="#request.pv.pageList">
 					<tr>
-						<td align="center" height="25">1</td>
-						<td>emp201001</td>
-						<td>张三</td>
-						<td>女</td>
-						<td>教职部</td>
-						<td>班主任</td>
+						<td align="center" height="25"><s:property value="emp_id"/></td>
+						<td><s:property value="emp_sn"/></td>
+						<td><s:property value="emp_name"/></td>
+						<td><s:property value="emp_sex"/></td>
+						<td><s:property value="dep_id"/></td>
+						<td><s:property value="emp_job"/></td>
 						<td><input type="checkbox" class="style_box" /></td>
-						<td><a href="editEmployee.html">详细</a></td>
+						<td><a href="<s:property value="emp_img"/>">详细</a></td>
 					</tr>
+					</s:iterator>
 
-					<tr>
-						<td align="center" height="25">1</td>
-						<td>emp201002</td>
-						<td>李四</td>
-						<td>男</td>
-						<td>教职部</td>
-						<td>教师</td>
-						<td><input type="checkbox" class="style_box" /></td>
-						<td><a href="editEmployee.html">详细</a></td>
-					</tr>
 					<tr>
 						<td colspan="8" align="right"><input type="checkbox"
 							class="style_box" />全选/取消&nbsp;&nbsp;<input type="submit"
@@ -242,12 +235,25 @@ form {
 				</table>
 			</form>
 			<center>
+				<pg:pager items="${pv.totalNo}" maxPageItems="5" maxIndexPages="5"
+					url="emp/emp.action">
+					<pg:first>
+						<a href="${pageUrl}">首页</a>
+					</pg:first>
+					<pg:prev>
+						<a href="${pageUrl}">前页</a>
+					</pg:prev>
+					<pg:pages>
+						<a href="${pageUrl}" class="item">${pageNumber}</a>
+					</pg:pages>
 
-
-				<a href="#">首页</a> <font color="red" class="item">1</font> <a
-					href="#">2</a> <a href="#">后页</a> <a href="#">尾页</a>
-
-
+					<pg:next>
+						<a href="${pageUrl}">后页</a>
+					</pg:next>
+					<pg:last>
+						<a href="${pageUrl}">尾页</a>
+					</pg:last>
+				</pg:pager>
 			</center>
 		</div>
 		<Br /> <br />
@@ -255,7 +261,8 @@ form {
 			<center>
 				<fieldset>
 					<legend>添加员工信息</legend>
-					<form method="POST" action="" id="form1" name="form1">
+					<form method="POST" action="emp/emp_addEmp.action" id="form1"
+						name="form1" enctype="multipart/form-data">
 
 						<ul>
 							<li><label>账&nbsp;&nbsp;号：</label><input type="text"
@@ -264,10 +271,10 @@ form {
 							<li class="left"><label>密&nbsp;&nbsp;码：</label><input
 								type="text" name="loginPwd" value="" readonly="readonly"
 								disabled="disabled" class="input_r"></li>
-							<li><label>员工编号：</label><input type="text" name="empNo"
+							<li><label>员工编号：</label><input type="text" name="emp.emp_sn"
 								value=""></li>
-							<li><label>员工姓名：</label><input type="text" name="empName"
-								value=""></li>
+							<li><label>员工姓名：</label><input type="text"
+								name="emp.emp_name" value=""></li>
 							<li><label>所属部门：</label> <select name="" id="s1"
 								onchange="find_test()">
 									<option value="请选择">--请选择--</option>
@@ -278,19 +285,19 @@ form {
 							<li><label>子部门： </label> <select name="" id="s2">
 									<option value="请选择">--请选择--</option>
 							</select></li>
-							<li><label>所任职务：</label><input type="text" name="job"
+							<li><label>所任职务：</label><input type="text"
+								name="emp.emp_job" value=""></li>
+							<li><label>联系电话：</label><input type="text"
+								name="emp.emp_phone" value=""></li>
+							<li><label>现所在住址：</label><input type="text"
+								name="emp.emp_address" value=""></li>
+							<li><label>性 别：</label><input type="text" name="emp.emp_sex"
 								value=""></li>
-							<li><label>联系电话：</label><input type="text" name="phone"
-								value=""></li>
-							<li><label>现所在住址：</label><input type="text" name="address"
-								value="" maxlength="120" style="width:400px;"></li>
-							<li><label>性 别：</label><input type="text" name="sex"
-								value=""></li>
-							<li style="width:100%;text-align:center;"><input
-								type="submit" name="cmdSave" value="添 加"
+							<li><label>员工图片:：</label><input type="file" name="image"></li>
+							<li style="width:100%;text-align:center;">
+							<input type="submit" name="cmdSave" value="添 加"
 								onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)"
-								class="button" style="border:0px solid #fff;"
-								onclick="alert('添加成功');return false;"></li>
+								class="button" style="border:0px solid #fff;"></li>
 
 						</ul>
 

@@ -10,6 +10,8 @@
 
 		<property name="emp_name"></property>
 		
+		<property name="emp_sn"></property>
+		
 		<property name="emp_sex"></property>
 	
 		<property name="emp_address"></property>
@@ -20,7 +22,7 @@
 	
 	 	<property name="emp_img"></property>
 		
-		<many-to-one column="dep_id" name="dep" class="sino.java.po.dep.Department"/>
+		<many-to-one column="dep_id" name="dep"/>
 	
 	</class>
 </hibernate-mapping>

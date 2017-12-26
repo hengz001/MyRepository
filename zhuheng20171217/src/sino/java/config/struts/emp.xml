@@ -8,6 +8,7 @@
 	<package name="emp" namespace="/" extends="struts-default">
 		<action name="emp_*" class="sino.java.action.emp.EmpAction" method="{1}">
 			<result name="index">/WEB/page/emp/employeeManage.jsp</result>
+			<result name="addEmp">/WEB/page/common/close.html</result>
 		</action>
 	</package>
 </struts>
