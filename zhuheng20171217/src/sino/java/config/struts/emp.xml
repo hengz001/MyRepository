@@ -9,6 +9,8 @@
 		<action name="emp_*" class="sino.java.action.emp.EmpAction" method="{1}">
 			<result name="index">/WEB/page/emp/employeeManage.jsp</result>
 			<result name="addEmp">/WEB/page/common/close.html</result>
+			<result name="deleteEmp">/WEB/page/common/close.html</result>
+			<result name="showEmp">/WEB/page/emp/editEmp.jsp</result>
 		</action>
 	</package>
 </struts>

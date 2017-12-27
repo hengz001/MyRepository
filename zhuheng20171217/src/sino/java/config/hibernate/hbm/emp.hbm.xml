@@ -21,6 +21,8 @@
 		<property name="emp_job"></property>
 	
 	 	<property name="emp_img"></property>
+	 	
+	 	<property name="flag"></property>
 		
 		<many-to-one column="dep_id" name="dep"/>
 	

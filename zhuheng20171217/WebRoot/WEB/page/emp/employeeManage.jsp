@@ -51,6 +51,20 @@
 			s2.options[i] = null;
 		}
 	}
+	
+	function m_test(){
+		var cc = document.getElementsByName("cc");
+		var ccall = document.getElementById("ccall");
+		if(ccall.checked){
+			for(i=0;i<cc.length;i++){
+				cc[i].checked = true;
+			}
+		}else{
+			for(i=0;i<cc.length;i++){
+				cc[i].checked = false;
+			}
+		}
+	}
 </script>
 
 <style type="text/css">
@@ -194,10 +208,8 @@ form {
 </head>
 
 <body>
-	<center>
-
 		<div id="emplist">
-			<form action="" method="post">
+			<form action="emp/emp_deleteEmp.action" method="post">
 				<table width="550" height="30" border="1" align="center"
 					cellpadding="0" cellspacing="0">
 					<tr>
@@ -219,18 +231,21 @@ form {
 						<td><s:property value="emp_sex"/></td>
 						<td><s:property value="dep_id"/></td>
 						<td><s:property value="emp_job"/></td>
-						<td><input type="checkbox" class="style_box" /></td>
-						<td><a href="<s:property value="emp_img"/>">详细</a></td>
+						<td><input type="checkbox" class="style_box" name="cc" value='<s:property value="emp_id"/>'/></td>
+						<td><a href="emp/emp_showEmp?empId=<s:property value="emp_id"/>">详细</a></td>
 					</tr>
 					</s:iterator>
 
 					<tr>
-						<td colspan="8" align="right"><input type="checkbox"
-							class="style_box" />全选/取消&nbsp;&nbsp;<input type="submit"
-							value="删除信息" onmouseover="buttonHover(this)"
-							onmouseout="buttonNormal(this)" class="button"
+						<td colspan="8" align="right">
+							<input type="checkbox"
+								class="style_box" id="ccall" onclick="m_test()"/>全选/取消&nbsp;&nbsp;
+							<input type="submit"
+								value="删除信息" onmouseover="buttonHover(this)"
+								onmouseout="buttonNormal(this)" class="button"
 							style="border:0px solid #fff;"
-							onclick="alert('删除成功');return false;" />&nbsp;</td>
+							onclick="alert('删除成功');return true;" />&nbsp;
+						</td>
 					</tr>
 				</table>
 			</form>

@@ -3,6 +3,7 @@ package sino.java.action.emp;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,16 +39,45 @@ public class EmpAction {
 	
 	private String depId;
 	
-	public String execute(){
+	public String showEmp(){
 		HttpServletRequest request = ServletActionContext.getRequest();
-		int pageSize = 5;
-		int pageNo = 0;
-		String pageNo_str = request.getParameter("pager.offset");
-		if(null != pageNo_str){
-			pageNo = Integer.parseInt(pageNo_str); 
+		int empId = 0;
+		String strId = request.getParameter("empId");
+		if(null == strId){
+			return null;
 		}
-		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e",pageNo,pageSize);
-		request.setAttribute("pv",pv);
+		empId = Integer.parseInt(strId);
+		emp = empServiceFind.findById(Employee.class, empId);
+		request.setAttribute("emp",emp);
+		return "showEmp";
+	}
+	
+	public String deleteEmp(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String strs[] = request.getParameterValues("cc");
+		
+		int i=strs.length;
+		
+		Serializable ses[] = new Serializable[i];
+		
+		i=0;
+		for(String str : strs){
+			ses[i++] = Integer.parseInt(str);
+		}
+		empService.deleteByLogic(Employee.class, ses, "emp_id", "flag");
+		return "deleteEmp";
+	}
+	
+	public String execute(){
+//		HttpServletRequest request = ServletActionContext.getRequest();
+//		int pageSize = 5;
+//		int pageNo = 0;
+//		String pageNo_str = request.getParameter("pager.offset");
+//		if(null != pageNo_str){
+//			pageNo = Integer.parseInt(pageNo_str); 
+//		}
+//		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e",pageNo,pageSize);
+//		request.setAttribute("pv",pv);
 		return "index";
 	}
 	
@@ -78,6 +108,7 @@ public class EmpAction {
 		emp.setDep(depServiceFind.findById(Department.class, dep_id));
 		emp.setEmp_img(path+imageFileName);
 		empService.save(emp);
+		emp.setFlag(1);
 		return "addEmp";
 	}
 	
@@ -93,7 +124,7 @@ public class EmpAction {
 		if(null != pageNo_str){
 			pageNo = Integer.parseInt(pageNo_str); 
 		}
-		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e",pageNo,pageSize);
+		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e WHERE e.flag=1",pageNo,pageSize);
 		request.setAttribute("pv",pv);
 		
 		return "index";

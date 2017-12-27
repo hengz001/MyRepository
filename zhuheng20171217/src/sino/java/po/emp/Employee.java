@@ -26,6 +26,16 @@ public class Employee implements Serializable{
 	
 	private Department dep;
 	
+	private int flag;
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
 	public int getEmp_id() {
 		return emp_id;
 	}
