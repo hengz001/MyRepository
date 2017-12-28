@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,60 @@ public class EmpAction {
 	private Employee emp = new Employee();
 	
 	private String depId;
+	
+	public String findEmp(){
+		String job;
+		String dep;
+		String name;
+		int depId;
+		String address;
+		String sPageNo;
+		int pageNo = 1;
+		int pageSize= 2;
+		StringBuffer sb = new StringBuffer();
+		List<Object> parameter = new ArrayList<Object>();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		job = request.getParameter("job");
+		if(null!=job && !job.equals("")){
+			sb.append(" AND ");
+			sb.append("e.emp_job=?");
+			parameter.add(job.trim());
+		}
+		
+		name = request.getParameter("name");
+		if(null!=name && !name.equals("")){
+			sb.append(" AND ");
+			sb.append("e.emp_name=?");
+			System.out.println(name);
+			parameter.add(name.trim());
+		}
+		
+		dep = request.getParameter("dep");
+		if(null!=dep && !dep.equals("请选择")){
+			sb.append(" AND ");
+			sb.append("e.dep.dep_id=?");
+			depId = Integer.parseInt(dep);
+			Serializable id = depId;
+			parameter.add(id);
+		}
+		
+		address = request.getParameter("address");
+		if(null!=address && !address.equals("")){
+			sb.append(" AND ");
+			sb.append("e.emp_address=?");
+			parameter.add(address.trim());
+		}
+		
+		sPageNo = request.getParameter("pager.offset");
+		if(null!=sPageNo && !sPageNo.equals("")){
+			pageNo = Integer.parseInt(sPageNo);
+		}
+		
+		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e WHERE e.flag=1 "+sb.toString(),parameter.toArray(),pageNo, pageSize);
+		request.setAttribute("pv", pv);
+		return "findEmp";
+	}
 	
 	public String showEmp(){
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -89,7 +144,6 @@ public class EmpAction {
 		String realPath = ServletActionContext.getServletContext().getRealPath(path);
 		System.out.println(realPath);
 		System.out.println(imageFileName);
-//		java.io.File.<init>(File.java:317)
 		if(null == imageFileName){
 			return null;
 		}
@@ -115,7 +169,9 @@ public class EmpAction {
 	//home page
 	public String index(){
 		List<Department> deps = depServiceFind.findAll(Department.class, "FROM Department d WHERE d.parent=null AND d.flag = 1");
+		List<Department> depss = depServiceFind.findAll(Department.class, "FROM Department d WHERE d.flag = 1");
 		ServletActionContext.getRequest().setAttribute("deps", deps);
+		ServletActionContext.getRequest().setAttribute("depss", depss);
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		int pageSize = 5;

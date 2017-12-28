@@ -29,11 +29,10 @@
 	}
 
 	function find_test() {
-		var pid = $('#s1').val();
+		var depId = $('#s1').val();
 		var url = "emp/emp_findByDep.action?depId=" + depId;
 		$.get(url, null, function(data) {
 			var dom = data.getElementsByTagName("subDep");
-			alert(dom.length);
 			var s2 = document.getElementById("s2");
 			t_clear();
 			for (i = 0; i < dom.length; i++) {
@@ -290,16 +289,21 @@ form {
 								value=""></li>
 							<li><label>员工姓名：</label><input type="text"
 								name="emp.emp_name" value=""></li>
-							<li><label>所属部门：</label> <select name="" id="s1"
-								onchange="find_test()">
-									<option value="请选择">--请选择--</option>
-									<s:iterator value="#request.deps">
-										<option value='<s:property value="dep_id"/>'><s:property value="dep_name"/></option>
-									</s:iterator>
-							</select></li>
-							<li><label>子部门： </label> <select name="" id="s2">
-									<option value="请选择">--请选择--</option>
-							</select></li>
+							<li>
+								<label>所属部门：</label> 
+									<select name="" id="s1" onchange="find_test()">
+										<option value="请选择">--请选择--</option>
+										<s:iterator value="#request.deps">
+											<option value='<s:property value="dep_id"/>'><s:property value="dep_name"/></option>
+										</s:iterator>
+									</select>
+							</li>
+							<li>
+							<label>子部门： </label> 
+								<select name="" id="s2">
+										<option value="请选择">--请选择--</option>
+								</select>
+							</li>
 							<li><label>所任职务：</label><input type="text"
 								name="emp.emp_job" value=""></li>
 							<li><label>联系电话：</label><input type="text"
@@ -321,18 +325,22 @@ form {
 				<br />
 				<fieldset>
 					<legend>查找员工</legend>
-					<form method="POST" action="" id="form1" name="form1">
-						<input type="radio" class="style_box" name="radio1" /><span>按编号查询</span>&nbsp;&nbsp;<input
-							type="radio" class="style_box" checked="checked" name="radio1" /><span>按姓名查询</span><br />
-						<Br />
-						<div style=" margin-left:70px;text-align:left">
-							<label for="keywords" style="margin-top:12px;">查询条件：</label><input
-								type="text" id="keywords" name="keywords"
-								style="width:200px; height:25px;" /> <input type="submit"
-								value="提交查询" class="button" style="border:0px solid #fff;"
-								onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)"
-								onClick="return false;" />
-							<div>
+					<form method="POST" action="emp/emp_findEmp.action" id="form1" name="form1">
+						<ul>
+							<li><label>职位</label><input type="text" name="job"/></li>
+							<li><label>姓名</label><input type="text" name="name"/></li>
+							<li>
+								<label>所属部门</label> 
+									<select name="dep" id="dep">
+										<option value="请选择">--请选择--</option>
+										<s:iterator value="#request.depss">
+											<option value='<s:property value="dep_id"/>'><s:property value="dep_name"/></option>
+										</s:iterator>
+									</select>
+							</li>
+							<li><label>地址</label><input type="text" name="address"/></li>
+						</ul>
+						<div style=" margin-left:70px;text-align:left"><input type="submit" value="提交查询" class="button" style="border:0px solid #fff;"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)"/></div>
 					</form>
 				</fieldset>
 			</center>

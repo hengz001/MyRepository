@@ -42,19 +42,29 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 	public PageView<T> findByPage(Class<T> entityClass, String sql, Object[] keys, int pageNo, int pageSize) {
 		PageView<T> pv = new PageView<T>();
 		int totalNo = getTotal(sql, keys,entityClass);
+//		pv.setTotalNo(totalNo);
+//		Query<T> query = getSession().createQuery(sql,entityClass);
+//		if(null!=keys && keys.length>0){
+//			for (int j = 0; j < keys.length; j++) {
+//				query.setParameter(j, keys[j]);
+//			}
+//		}
+//		query.setFirstResult(pageNo).setMaxResults(pageSize);
+//		List<T> pageList = query.getResultList();
+//		if(null != pageList){
+//			pv.setPageList(pageList);
+//		}
+//		return pv;
 		pv.setTotalNo(totalNo);
-		Query<T> query = getSession().createQuery(sql,entityClass);
-		if(null!=keys && keys.length>0){
-			for (int j = 0; j < keys.length; j++) {
-				query.setParameter(j, keys[j]);
+		Query query = getSession().createQuery(sql);
+		if (keys != null && keys.length > 0) {
+			for (int i = 0; i < keys.length; i++) {
+				query.setParameter(i, keys[i]);
 			}
 		}
-//		query.setFirstResult((pageNo-1)*pageSize).setMaxResults(pageSize);
 		query.setFirstResult(pageNo).setMaxResults(pageSize);
-		List<T> pageList = query.getResultList();
-		if(null != pageList){
-			pv.setPageList(pageList);
-		}
+		List<T> pageList = query.list();
+		pv.setPageList(pageList);
 		return pv;
 	}
 	
