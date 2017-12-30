@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,18 +47,82 @@ public class EmpAction {
 		String name;
 		int depId;
 		String address;
+		String job01;
+		String dep01;
+		String name01;
+		int depId01;
+		String address01;
 		String sPageNo;
-		int pageNo = 1;
-		int pageSize= 2;
+		int pageNo = 0;
+		int pageSize= 5;
+		
 		StringBuffer sb = new StringBuffer();
 		List<Object> parameter = new ArrayList<Object>();
 		HttpServletRequest request = ServletActionContext.getRequest();
+	
+		job01 = request.getParameter("job01");
+		if(null!=job01 && !job01.equals("")){
+			
+			try {
+				job01 = new String(job01.getBytes("iso-8859-1"),"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			sb.append(" AND ");
+			sb.append("e.emp_job=?");
+			parameter.add(job01.trim());
+			request.setAttribute("job01",job01);
+		}
+		
+		name01 = request.getParameter("name01");
+		if(null!=name01 && !name01.equals("")){
+			try {
+				name01 = new String(name01.getBytes("iso-8859-1"),"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			sb.append(" AND ");
+			sb.append("e.emp_name=?");
+			System.out.println(name01);
+			parameter.add(name01.trim());
+			request.setAttribute("name01",name01);
+		}
+		
+		dep01 = request.getParameter("dep01");
+		if(null!=dep01 && !dep01.equals("请选择")){
+			try {
+				dep01 = new String(dep01.getBytes("iso-8859-1"),"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			sb.append(" AND ");
+			sb.append("e.dep.dep_id=?");
+			depId = Integer.parseInt(dep01);
+			Serializable id = depId;
+			parameter.add(id);
+			request.setAttribute("dep01",dep01);
+		}
+		
+		address01 = request.getParameter("address01");
+		if(null!=address01 && !address01.equals("")){
+			try {
+				address01 = new String(address01.getBytes("iso-8859-1"),"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			sb.append(" AND ");
+			sb.append("e.emp_address=?");
+			parameter.add(address01.trim());
+			request.setAttribute("address01",address01);
+		}
 		
 		job = request.getParameter("job");
 		if(null!=job && !job.equals("")){
 			sb.append(" AND ");
 			sb.append("e.emp_job=?");
 			parameter.add(job.trim());
+			request.setAttribute("job01",job);
 		}
 		
 		name = request.getParameter("name");
@@ -66,6 +131,7 @@ public class EmpAction {
 			sb.append("e.emp_name=?");
 			System.out.println(name);
 			parameter.add(name.trim());
+			request.setAttribute("name01",name);
 		}
 		
 		dep = request.getParameter("dep");
@@ -75,6 +141,7 @@ public class EmpAction {
 			depId = Integer.parseInt(dep);
 			Serializable id = depId;
 			parameter.add(id);
+			request.setAttribute("dep01",dep);
 		}
 		
 		address = request.getParameter("address");
@@ -82,6 +149,7 @@ public class EmpAction {
 			sb.append(" AND ");
 			sb.append("e.emp_address=?");
 			parameter.add(address.trim());
+			request.setAttribute("address01",address);
 		}
 		
 		sPageNo = request.getParameter("pager.offset");

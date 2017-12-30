@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			body{background-color:#FFFFFF;}
 			.button{
 			cursor:pointer;
-			background-image:url(web/imgs/button_normal.jpg);
+			background-image:url(WEB/imgs/button_normal.jpg);
 			width:102px;
 			height:35px; 
 			border:0px solid #fff;
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		form{ display:inline ; padding:0px ; margin:0px;}
 		.button{
 			cursor:pointer;
-			background-image:url(web/imgs/button_normal.jpg);
+			background-image:url(WEB/imgs/button_normal.jpg);
 			width:102px;
 			height:35px; 
 			border:0px solid #fff;
@@ -58,11 +58,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</style>
 			<script type="text/javascript">
 		function buttonNormal(obj){
-			obj.style.backgroundImage= "url('web/imgs/button_normal.jpg')";
+			obj.style.backgroundImage= "url('WEB/imgs/button_normal.jpg')";
 		}
 		
 		function buttonHover(obj){
-			obj.style.backgroundImage="url('web/imgs/button_hover.jpg')";
+			obj.style.backgroundImage="url('WEB/imgs/button_hover.jpg')";
 		}
 	</script>
   </head>

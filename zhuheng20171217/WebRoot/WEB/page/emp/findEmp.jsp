@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			body{background-color:#FFFFFF;}
 			.button{
 			cursor:pointer;
-			background-image:url(web/imgs/button_normal.jpg);
+			background-image:url(WEB/imgs/button_normal.jpg);
 			width:102px;
 			height:35px; 
 			border:0px solid #fff;
@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		form{ display:inline ; padding:0px ; margin:0px;}
 		.button{
 			cursor:pointer;
-			background-image:url(web/imgs/button_normal.jpg);
+			background-image:url(WEB/imgs/button_normal.jpg);
 			width:102px;
 			height:35px; 
 			border:0px solid #fff;
@@ -70,11 +70,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</style>
 			<script type="text/javascript">
 		function buttonNormal(obj){
-			obj.style.backgroundImage= "url('web/imgs/button_normal.jpg')";
+			obj.style.backgroundImage= "url('WEB/imgs/button_normal.jpg')";
 		}
 		
 		function buttonHover(obj){
-			obj.style.backgroundImage="url('web/imgs/button_hover.jpg')";
+			obj.style.backgroundImage="url('WEB/imgs/button_hover.jpg')";
+		}
+		
+		function checkName(){
+			var ccs = document.getElementsByName("cc");
+			for(i=0; i<ccs.length;i++){
+				if(ccs[i].checked == true){
+					ccs[i].checked = false;
+				}else{
+					ccs[i].checked = true;
+				}
+			}
 		}
 	</script>
 
@@ -106,14 +117,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td><s:property value=""/></td>
 		<td><s:property value="emp_job"/></td>
 		<td><input type="checkbox" class="style_box" name="cc" value='<s:property value="emp_id"/>'></td>
-		<td><a href="bfemp/emp_showEmp.action">详细</a></td>
+		<td><a>详细</a></td>
      </tr>
   </s:iterator> 
-	 <tr><td colspan="8" align="right"><input type="checkbox" class="style_box"/>全选/取消&nbsp;&nbsp;<input type="submit" value="删除信息"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" class="button" style="border:0px solid #fff;"  onclick="alert('删除成功');return false;" />&nbsp;</td></tr>
+	 <tr><td colspan="8" align="right"><input type="checkbox" class="style_box" onclick="checkName();"/>全选/取消&nbsp;&nbsp;<input type="submit" value="删除信息"   onmouseover="buttonHover(this)" onmouseout="buttonNormal(this)" class="button" style="border:0px solid #fff;"  onclick="alert('删除成功');return false;" />&nbsp;</td></tr>
 </table>
 </form>
 	<center>
-	  <pg:pager items="${pv.totalNo}"  maxPageItems="2" maxIndexPages="2" url="bfemp/emp_findEmp.action">
+	  <pg:pager items="${pv.totalNo}"  maxPageItems="2" maxIndexPages="2" url="emp/emp_findEmp.action">
+         <s:if test="null != #request.job01">
+         	<pg:param name="job01" value="${job01}"/>
+         </s:if>
+         <s:if test="null != #request.name01">
+         	<pg:param name="name01" value="${name01}"/>
+         </s:if>
+         <s:if test="null != #request.dep01">
+         	<pg:param name="dep01" value="${dep01}"/>
+         </s:if>
+         <s:if test="null != #request.address01">
+         </s:if>
          <pg:first>
             <a href="${pageUrl}">首页</a>
          </pg:first>

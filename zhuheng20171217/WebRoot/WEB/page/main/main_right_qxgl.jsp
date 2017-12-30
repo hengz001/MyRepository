@@ -52,16 +52,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="iconButton" style="position:absolute;left:80px; top:100px">
 					 <div class="iconImage" 
 						 style="background-image:url(WEB/imgs/icos/mkgl.jpg);" 
-						 onclick="openModalWindow('../purview/module/module.html',615,420)">
+						 onclick="openWindow('mod/mod.action',600,500,'mod')">
 					 </div>
-					 <div style="text-align:center; line-height:20px" onclick="openModalWindow('../purview/module/module.html',615,420)">模块管理</div>
+					 <div style="text-align:center; line-height:20px" onclick="openModalWindow('mod/mod.action',600,500,'mod')">模块管理</div>
 					</div>
 					
 					<!-- 账号管理 -->
 					<div class="iconButton" style="position:absolute;left:280px; top:100px">
 					 <div class="iconImage" 
 						 style="background-image:url(WEB/imgs/icos/zhgl.jpg);" 
-						 onclick="openModalWindow('../purview/account/account.html',615,550)">
+						 onclick="openWindow('../purview/account/account.html',615,550)">
 					 </div>
 					 <div style="text-align:center; line-height:20px" onclick="openModalWindow('../purview/account/account.html',615,550)">账号管理</div>
 					</div>

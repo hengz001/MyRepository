@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping >
+	<class name="sino.java.po.module.Module" table="tb_mod">
+		<id name="m_id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="m_name" ></property>
+		<property name="m_address" ></property>
+		<property name="m_path_c" ></property>
+		<property name="m_path_n" ></property>
+		<property name="m_sn" ></property>
+		<property name="flag" ></property>
+		
+		<many-to-one column="pid" name="parent" class="sino.java.po.module.Module"/>
+		
+		<set name="children" lazy="false" inverse="true">
+			<key column="pid"/>
+			<one-to-many class="sino.java.po.module.Module"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>
+
+	
+	
+	
+	
+	
+	
+	
