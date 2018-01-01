@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <script type="text/javascript">
   	//改变按钮图片
  	function changePic(obj,picName){
-		obj.style.backgroundImage = 'url(WEB/imgs/' + picName + ')';
+		obj.style.backgroundImage = 'url(' + picName + ')';
 	}
 	
 	//跳转路径
@@ -50,9 +50,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </script>
 
   </head>
-  
+ 
   <body>
     <div style="background-image:url(WEB/imgs/mainFunction_bar.jpg); width:188px; height:403px;">
+		<s:iterator value="#request.mods">
+			<div style="height:35px"></div>
+			<div class="functionButton" 
+				style="background-image:url('<s:property value="m_path_c"/>')"
+				onmouseover="changePic(this,'<s:property value="m_path_n"/>')"
+				onmouseout="changePic(this,'<s:property value="m_path_c"/>')"
+				onclick="gotoLocation('<s:property value="m_address"/>?mid=<s:property value="m_id"/>')">
+				<p class="textShadow" onclick="gotoLocation('<s:property value="m_address"/>')">
+				&nbsp;&nbsp;<s:property value="m_name"/></p>
+			</div>
+		</s:iterator>
+		<!-- 
 		<div style="height:35px"></div>
 		<div class="functionButton" 
 				style="background-image:url(WEB/imgs/zzgl_normal.jpg)"
@@ -85,6 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				onclick="gotoLocation('WEB/page/main/main_right_lcgl.jsp')">
 				<p class="textShadow" onclick="gotoLocation('main_right_lcgl.jsp')">&nbsp;&nbsp;流程管理</p>
 		</div>
+		 -->
 	</div>
 	
 	<div style="background-image:url(WEB/imgs/main_left_bar2.jpg); width:188px; height:380px">

@@ -1,5 +1,7 @@
 package sino.java.service.mod;
 
-public interface ModuleService {
+import sino.java.dao.base.BaseDAO;
+
+public interface ModuleService extends BaseDAO{
 
 }

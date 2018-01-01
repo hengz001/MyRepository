@@ -8,6 +8,10 @@
 	<package name="mod" namespace="/" extends="struts-default">
 		<action name="mod_*" class="sino.java.action.mod.ModAction" method="{1}">
 			<result name="index">/WEB/page/mod/showMod.jsp</result>
+			<result name="showAddModule">/WEB/page/mod/addMod.jsp</result>
+			<result name="addModule">/WEB/page/common/close.html</result>
+			<result name="showLeftModule">/WEB/page/main/main_left.jsp</result>
+			<result name="showRightModule">/WEB/page/main/main_right.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -25,6 +25,8 @@
 	 	<property name="flag"></property>
 		
 		<many-to-one column="dep_id" name="dep"/>
+		
+		<one-to-one name="user" property-ref="emp"></one-to-one>
 	
 	</class>
 </hibernate-mapping>

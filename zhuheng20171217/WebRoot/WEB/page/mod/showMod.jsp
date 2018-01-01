@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td>
 			<td width="110" style="height:35px;line-height:35px" align="left" valign="top">
 				
-				<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" onclick="openWindow('bfmod/mod_openAddMod.action',315,280,'addmod')">
+				<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" onclick="openWindow('mod/mod_showAddModule.action',600,415,'addmod')">
 					添加模块
 				</div>
 			</td>

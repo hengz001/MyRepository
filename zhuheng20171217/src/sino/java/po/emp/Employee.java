@@ -3,6 +3,7 @@ package sino.java.po.emp;
 import java.io.Serializable;
 
 import sino.java.po.dep.Department;
+import sino.java.po.user.User;
 
 public class Employee implements Serializable{
 
@@ -27,6 +28,16 @@ public class Employee implements Serializable{
 	private Department dep;
 	
 	private int flag;
+	
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public int getFlag() {
 		return flag;

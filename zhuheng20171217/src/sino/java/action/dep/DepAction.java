@@ -32,7 +32,6 @@ public class DepAction implements RequestAware{
 	private String depName;
 	private String depSn;
 	private String depDesc;
-	
 	private String type;
 	
 	public String execute(){

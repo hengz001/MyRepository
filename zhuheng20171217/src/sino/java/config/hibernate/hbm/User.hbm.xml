@@ -3,15 +3,17 @@
                             "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                             "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
-<hibernate-mapping package="sino.java.po.user">
-	<class name="User" table="user">
-		<id name="id" column="id">
+<hibernate-mapping >
+	<class name="sino.java.po.user.User" table="tb_user">
+		<id name="u_id" >
 			<generator class="native"></generator>
 		</id>
-		<property name="name" column="name" type="java.lang.String"
-			not-null="true" length="16"></property>
-		<property name="password" column="password" type="java.lang.String"
-			not-null="true" length="16" />
+		<property name="u_name" ></property>
+		<property name="u_pwd"/>
+		<property name="flag"/>
+		<many-to-one name="group" column="g_id"></many-to-one>
+		<many-to-one name="emp" unique="true"></many-to-one>
 	</class>
 </hibernate-mapping>
 
+	

@@ -17,9 +17,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="web/css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="web/css/mainstyle.css" />
-	<script type="text/javascript" src="web/js/mainjs.js"></script>
+	<link rel="stylesheet" type="text/css" href="WEB/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="WEB/css/mainstyle.css" />
+	<script type="text/javascript" src="WEB/js/mainjs.js"></script>
     <script type="text/javascript">
        function t_test() {
     	   document.getElementById("f1").submit();
@@ -29,11 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
      <div align="center">
-     <form action="bfmod/mod_addMod.action" enctype="multipart/form-data" method="post" id="f1">
+     <form action="mod/mod_addModule.action" enctype="multipart/form-data" method="post" id="f1">
 	<table width="300" height="150">
 		<tr>
 			<td height="60" align="left" 
-				style="background-image:url(web/imgs/addgroupbar.jpg);height:60px; line-height:60px">
+				style="background-image:url(WEB/imgs/addgroupbar.jpg);height:60px; line-height:60px">
 				<div style="width:70px; height:60px; float:left"></div>
 				<p  style="color:#0066ff; font-size:18px" class="textShadow">添加模块</p>
 			</td>
@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</tr>
 		<tr>
 			<td class="inputline" align="center">
-			<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')" onclick="t_test()">
+			<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" onclick="t_test()">
 					提交
 			</div>
 			</td>

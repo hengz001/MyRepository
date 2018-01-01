@@ -6,7 +6,7 @@ import sino.java.daoimpl.base.AbstractFinder;
 import sino.java.po.user.User;
 import sino.java.service.user.UserServiceFind;
 
-@Service
+@Service("userServiceFind")
 public class UserServiceFindImpl extends AbstractFinder<User> implements UserServiceFind{
 
 
