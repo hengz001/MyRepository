@@ -10,6 +10,9 @@
 			<result name="index">/WEB/page/group/account.jsp</result>
 			<result name="showAddGrp">/WEB/page/group/addgroup.jsp</result>
 			<result name="addGrp">/WEB/page/common/close.html</result>
+			<result name="deleteGrp">/WEB/page/common/close.html</result>
+			<result name="openUpdateGroup">/WEB/page/group/editgroup.jsp</result>
+			<result name="updateGroup">/WEB/page/common/close.html</result>
 		</action>
 	</package>
 </struts>

@@ -1,8 +1,12 @@
 package sino.java.action.user;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +44,55 @@ public class UserAction{
 	
 	private User user = new User();
 	
+	private int u_id;
+	
+	public String deleteUser(){
+		userService.deleteByLogic(User.class,new Serializable[]{u_id} , "u_id", "flag");
+		return "deleteUser";
+	}
+	
+	//ajax
+	public String showUser(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/xml;charset=utf-8");
+		
+		try {
+			PrintWriter out = response.getWriter();
+			User user = userFind.findById(User.class,u_id); 
+			Employee emp = user.getEmp();
+
+			out.println("<users>");
+			out.println("<user>");
+			
+			out.println("<user-id>"+emp.getEmp_id()+"</user-id>");
+			out.println("<user-trueName>"+emp.getEmp_name()+"</user-trueName>");
+			out.println("<user-name>"+user.getU_name()+"</user-name>");
+			out.println("<user-password>"+user.getU_pwd()+"</user-password>");
+			out.println("<user-sex>"+emp.getEmp_sex()+"</user-sex>");
+			out.println("<user-job>"+emp.getEmp_job()+"</user-job>");
+			out.println("<user-phone>"+emp.getEmp_phone()+"</user-phone>");
+			out.println("<user-address>"+emp.getEmp_address()+"</user-address>");
+			out.println("<user-sn>"+emp.getEmp_sn()+"</user-sn>");
+			
+			out.println("</user>");
+			out.println("</users>");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	
 	public String addUser(){
-		System.out.println(user.toString());
+		user.setFlag(1);
+		userService.save(user);
 		return "addUser";
 	}
 	
@@ -82,6 +133,15 @@ public class UserAction{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public int getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(int u_id) {
+		this.u_id = u_id;
+	}
+
 	
 	
 }

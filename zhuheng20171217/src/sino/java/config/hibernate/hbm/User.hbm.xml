@@ -12,7 +12,7 @@
 		<property name="u_pwd"/>
 		<property name="flag"/>
 		<many-to-one name="group" column="g_id"></many-to-one>
-		<many-to-one name="emp" unique="true"></many-to-one>
+		<many-to-one name="emp" unique="true" lazy="false"></many-to-one>
 	</class>
 </hibernate-mapping>
 

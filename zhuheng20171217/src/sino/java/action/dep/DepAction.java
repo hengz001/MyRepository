@@ -82,7 +82,6 @@ public class DepAction implements RequestAware{
 		int pageSize = 5;
 		PageView<Department> pv;
 		if(null != type && !type.equals("")){
-			System.out.println("------------------>"+type);
 			pv = depServiceFind.findByPage(Department.class, 
 					"FROM Department d WHERE d.dep_name=?",type,pageNo, pageSize);
 		}else{

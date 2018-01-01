@@ -19,8 +19,8 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public Session getSession(){
-		return this.sessionFactory.openSession();
+	private  Session getSession(){
+		return sessionFactory.getCurrentSession();
 	}
 
 	public T findById(Class<T> entityClass, Serializable id) {
@@ -83,4 +83,11 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 		return totalNo;
 	}
 	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 }
