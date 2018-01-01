@@ -1,116 +1,87 @@
-//package sino.java.action.user;
-//
-//import javax.annotation.Resource;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import sino.java.po.common.PageModel;
-//import sino.java.po.common.PageView;
-//import sino.java.po.user.User;
-//import sino.java.service.user.UserService;
-//import sino.java.service.user.UserServiceFind;
-//
-//public class UserAction{
-//
-//	private String name;
-//	
-//	private String password;
-//	
-//	private PageView<User> pv;
-//	
-//	private PageModel pm;
-//	
-//	private String page;
-//
-////	@Resource(name="userServiceImpl")
-////	private UserService ud;
-////	
-////	@Resource(name="userServiceFindImpl")
-////	private UserServiceFind udf;
-//	
-//	@Autowired
-//	private UserService ud;
-//	@Autowired
-//	private UserServiceFind udf;
-//	
-//	public String execute(){
-//		User user = new User();
-//		user.setName(name);
-//		user.setPassword(password);
-//		ud.save(user);
-//		return "success";
-//	}
-//	
-//	public String findByPage(){
-//		int pageNo=0;
-//		int pageSize=3;
-//		if(page!=null){
-//			pageNo = Integer.parseInt(page);
-//		}
-//		
-//		pv = udf.findByPage(User.class, "from User u", pageNo, pageSize);
-//		pv.setPageNo(pageNo);
-//		pv.setPageSize(pageSize);;
-//		pm = new PageModel();
-//		pm.setFirstPage(1);
-//		pm.setTotalPage(pv.getTotalPage());
-//		pm.setPreviousPageNo(pv.getProviousPageNo());
-//		pm.setNextPageNo(pv.getNextPageNo());
-//		return "findByPage";
-//	}
-//	
-//	public String show(){
-//		return "show";
-//	}
-//	
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//	public String getPassword() {
-//		return password;
-//	}
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
-//	
-//	public PageView<User> getPv() {
-//		return pv;
-//	}
-//
-//	public void setPv(PageView<User> pv) {
-//		this.pv = pv;
-//	}
-//
-//	public String getPage() {
-//		return page;
-//	}
-//
-//	public void setPage(String page) {
-//		this.page = page;
-//	}
-//	
-//	public UserService getUd() {
-//		return ud;
-//	}
-//
-//	public void setUd(UserService ud) {
-//		this.ud = ud;
-//	}
-//
-//	public UserServiceFind getUdf() {
-//		return udf;
-//	}
-//
-//	public void setUdf(UserServiceFind udf) {
-//		this.udf = udf;
-//	}
-//
-//	public PageModel getPm() {
-//		return pm;
-//	}
-//
-//	public void setPm(PageModel pm) {
-//		this.pm = pm;
-//	}
-//}
+package sino.java.action.user;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import sino.java.po.common.PageView;
+import sino.java.po.emp.Employee;
+import sino.java.po.group.Group;
+import sino.java.po.user.User;
+import sino.java.service.emp.EmpService;
+import sino.java.service.emp.EmpServiceFind;
+import sino.java.service.group.GroupService;
+import sino.java.service.group.GroupServiceFinder;
+import sino.java.service.user.UserService;
+import sino.java.service.user.UserServiceFind;
+
+public class UserAction{
+	
+	@Autowired 
+	private UserService userService;
+	
+	@Autowired
+	private UserServiceFind userFind;
+	
+	@Autowired
+	private GroupService groupService;
+	
+	@Autowired
+	private GroupServiceFinder groupFind;
+	
+	@Autowired
+	private EmpService empService;
+	
+	@Autowired
+	private EmpServiceFind empFind;
+	
+	private User user = new User();
+	
+	public String addUser(){
+		System.out.println(user.toString());
+		return "addUser";
+	}
+	
+	//显示添加用户页面
+	public String showAddUser(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		List<Group> groups =groupFind.findAll(Group.class, 
+				"FROM Group g WHERE g.flag=1");
+		request.setAttribute("groups",groups);
+		
+		return "showAddUser";
+	}
+	
+	public String getEmps(){
+		int pageNo =  0;
+		int pageSize = 5;
+		String str_pageNo;
+		HttpServletRequest request = ServletActionContext.getRequest();
+//		List<Employee> emps = empFind.findAll(Employee.class, 
+//				"FROM Employee e WHERE e.flag=1");
+//		request.setAttribute("emps",emps);
+		str_pageNo = request.getParameter("pager.offset");
+		if(null!=str_pageNo && !str_pageNo.equals("")){
+			pageNo = Integer.parseInt(str_pageNo);
+		}
+		
+		PageView<Employee> pv = empFind.findByPage(Employee.class, 
+				"FROM Employee e WHERE e.flag=1", pageNo, pageSize);
+		pv.setPageSize(pageSize);
+		request.setAttribute("pv", pv);
+		return "getEmps";
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+}

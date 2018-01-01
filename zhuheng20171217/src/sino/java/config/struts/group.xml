@@ -8,6 +8,8 @@
 	<package name="group" namespace="/" extends="struts-default">
 		<action name="group_*" class="sino.java.action.group.GroupAction" method="{1}">
 			<result name="index">/WEB/page/group/account.jsp</result>
+			<result name="showAddGrp">/WEB/page/group/addgroup.jsp</result>
+			<result name="addGrp">/WEB/page/common/close.html</result>
 		</action>
 	</package>
 </struts>

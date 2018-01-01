@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" type="text/css" href="web/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="WEB/css/reset.css" />
 	
 	<style type="text/css">
 		.textShadow{
@@ -35,14 +35,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		.button{
 			cursor:pointer;
-			background-image:url(web/imgs/button_normal.jpg);
+			background-image:url(WEB/imgs/button_normal.jpg);
 			width:102px;
 			height:35px;
 			text-align:center;
 			line-height:35px
 		}
 	</style>
-	<script type="text/javascript" src="web/js/mainjs.js"></script>
+	<script type="text/javascript" src="WEB/js/mainjs.js"></script>
 
   </head>
   
@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tr>
 			<td colspan="2" align="left" 
 				style=" height:60px;line-height:60px;
-						background-image:url(web/imgs/accountbar.jpg);
+						background-image:url(WEB/imgs/accountbar.jpg);
 						">
 				<div style="width:70px; height:60px; float:left"></div>
 				<p style="color:#0066ff; font-size:18px;" class="textShadow">
@@ -83,28 +83,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td>
 			<td valign="top" width="200" style="vertical-align:top; width:200px">
 				<div style="width:200px; height:380px;" align="center">
-					<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')"
+					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')"
 						onclick="openModalWindow('authorize.html',600,410)">
 						授权
 					</div>
 					<br />
-					<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')"
-						 onclick="openWindow('bfgrp/grp_showAddGrp.action',300,160,'grp')">
+					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')"
+						 onclick="openWindow('group/group_showAddGrp.action',600,400)">
 						添加用户组
 					</div>
-					<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')">
+					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')">
 						删除用户组
 					</div>
 					<br />
-					<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')"
-						 onclick="openModalWindow('addaccount.html',400,160)">
+					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')"
+						 onclick="openWindow('user/user_showAddUser.action',600,400)">
 						添加账号
 					</div>
-					<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')"
+					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')"
 						 onclick="openModalWindow('editgroup.html',300,160)">
 						改组
 					</div>
-					<div class="button" onmouseover="buttonHover(this,'web/')" onmouseout="buttonNormal(this,'web/')">
+					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')">
 						删除账号
 					</div>
 				</div>

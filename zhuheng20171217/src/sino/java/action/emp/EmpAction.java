@@ -50,7 +50,6 @@ public class EmpAction {
 		String job01;
 		String dep01;
 		String name01;
-		int depId01;
 		String address01;
 		String sPageNo;
 		int pageNo = 0;
