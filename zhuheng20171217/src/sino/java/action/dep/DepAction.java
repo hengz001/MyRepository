@@ -48,7 +48,7 @@ public class DepAction implements RequestAware{
 	}
 	
 	public String addDep(){
-		depService.addDep(department);
+		depService.save(department);
 		return "addDep";
 	}
 	

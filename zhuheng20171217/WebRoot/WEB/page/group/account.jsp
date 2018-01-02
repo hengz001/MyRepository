@@ -51,16 +51,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	<script type="text/javascript">
  		function t_delete(gid){
  			$('#deleteId').unbind("click");
+			$('#ImpowerId').unbind("click");
+				
 			$('#deleteId').click(function() {
 				document.location="group/group_deleteGrp?g_id="+gid;
-			}) ;	
+			}) ;
+			$('#ImpowerId').click(function(){
+				openWindow('impower/impower_showImpowerView.action?mainBodyId='+gid+'&mainBodyType=group',600,400)
+			});	
  		}
  		
  		function t_showName(u_id){
- 		
  			$('#deleteId').unbind("click");
  			$('#deleteName').unbind("click");
  			$('#updateId').unbind("click");
+			$('#ImpowerId').unbind("click"); 			
  			
  			$('#updateId').click(function(){
  				openWindow("group/group_openUpdateGroup.action?u_id="+u_id, 600, 400, "");
@@ -69,6 +74,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			$('#deleteName').click(function() {
  				document.location = "user/user_deleteUser?u_id="+u_id;
  			});
+ 			$('#ImpowerId').click(function(){
+				openWindow('impower/impower_showImpowerView.action?mainBodyId='+u_id+'&mainBodyType=user',600,400)
+			});
  		
  			var url = "user/user_showUser?u_id="+u_id;
  			$.get(url,null,function(data){
@@ -146,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td valign="top" width="200" style="vertical-align:top; width:200px">
 				<div style="width:200px; height:380px;" align="center">
 					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')"
-						onclick="openModalWindow('authorize.html',600,410)">
+						id="ImpowerId">
 						授权
 					</div>
 					<br />

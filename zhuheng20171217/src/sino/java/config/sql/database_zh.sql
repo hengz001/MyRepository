@@ -1,65 +1,19 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : zhuheng_test
+Source Server         : mySql_z
 Source Server Version : 50717
-Source Host           : 192.168.1.6:3306
+Source Host           : localhost:3306
 Source Database       : database_zh
 
 Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-12-31 21:28:19
+Date: 2018-01-01 23:11:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for course_info
--- ----------------------------
-DROP TABLE IF EXISTS `course_info`;
-CREATE TABLE `course_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cname` varchar(20) DEFAULT NULL,
-  `caddress` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of course_info
--- ----------------------------
-INSERT INTO `course_info` VALUES ('1', '物联网', '湖北鄂州');
-INSERT INTO `course_info` VALUES ('2', '人工智能', '湖北武汉');
-
--- ----------------------------
--- Table structure for course_user_info
--- ----------------------------
-DROP TABLE IF EXISTS `course_user_info`;
-CREATE TABLE `course_user_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `cid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`),
-  KEY `cid` (`cid`),
-  CONSTRAINT `course_user_info_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user_info` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `course_user_info_ibfk_2` FOREIGN KEY (`cid`) REFERENCES `course_info` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of course_user_info
--- ----------------------------
-INSERT INTO `course_user_info` VALUES ('1', '1', '1');
-INSERT INTO `course_user_info` VALUES ('2', '2', '1');
-INSERT INTO `course_user_info` VALUES ('3', '3', '1');
-INSERT INTO `course_user_info` VALUES ('4', '4', '1');
-INSERT INTO `course_user_info` VALUES ('5', '5', '1');
-INSERT INTO `course_user_info` VALUES ('6', '1', '2');
-INSERT INTO `course_user_info` VALUES ('7', '2', '2');
-INSERT INTO `course_user_info` VALUES ('8', '3', '2');
-INSERT INTO `course_user_info` VALUES ('9', '4', '2');
-INSERT INTO `course_user_info` VALUES ('10', '5', '2');
 
 -- ----------------------------
 -- Table structure for tb_dep
@@ -103,22 +57,36 @@ CREATE TABLE `tb_emp` (
   PRIMARY KEY (`emp_id`),
   KEY `FKel9y0rycol03onpot4w6mugp8` (`dep_id`),
   CONSTRAINT `FKel9y0rycol03onpot4w6mugp8` FOREIGN KEY (`dep_id`) REFERENCES `tb_dep` (`dep_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_emp
 -- ----------------------------
 INSERT INTO `tb_emp` VALUES ('1', 'zhuheng', '001', '111', '111', '111', '111', '/WEB/imgs/empheng.jpg', '1', '1');
 INSERT INTO `tb_emp` VALUES ('2', '2', '001', null, null, null, '111', null, '2', '1');
-INSERT INTO `tb_emp` VALUES ('3', '3', null, null, null, null, '111', null, '3', '1');
-INSERT INTO `tb_emp` VALUES ('4', '4', null, null, null, null, '111', null, '4', '1');
-INSERT INTO `tb_emp` VALUES ('5', '5', null, null, null, null, '222', null, '1', '1');
-INSERT INTO `tb_emp` VALUES ('6', '6', null, null, null, null, '333', null, '2', '1');
-INSERT INTO `tb_emp` VALUES ('7', '7', null, null, null, null, '222', null, '3', '1');
-INSERT INTO `tb_emp` VALUES ('8', '8', null, null, null, null, '333', null, '4', '1');
-INSERT INTO `tb_emp` VALUES ('9', '9', null, null, null, null, '222', null, '1', '1');
-INSERT INTO `tb_emp` VALUES ('10', '10', null, null, null, null, '333', null, '2', '1');
-INSERT INTO `tb_emp` VALUES ('11', '11', null, null, null, null, '222', null, '3', '1');
+INSERT INTO `tb_emp` VALUES ('7', '7', 'zhuheng1', '1', '1111111', '111111111', '222', null, '3', '1');
+INSERT INTO `tb_emp` VALUES ('8', '8', 'zhuheng', '2', '222222', '222222222', '333', null, '4', '1');
+INSERT INTO `tb_emp` VALUES ('12', 'zzz', '123', '3123', '132', '12312', 'CEO', '/WEB/imgs/empzhgl.jpg', null, '1');
+
+-- ----------------------------
+-- Table structure for tb_gorup
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_gorup`;
+CREATE TABLE `tb_gorup` (
+  `g_id` int(11) NOT NULL AUTO_INCREMENT,
+  `g_name` varchar(255) DEFAULT NULL,
+  `g_sn` varchar(255) DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  PRIMARY KEY (`g_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_gorup
+-- ----------------------------
+INSERT INTO `tb_gorup` VALUES ('5', '公共组', '000', '1');
+INSERT INTO `tb_gorup` VALUES ('6', '分组', '001', '0');
+INSERT INTO `tb_gorup` VALUES ('7', '分组2', '1111', '1');
+INSERT INTO `tb_gorup` VALUES ('8', '分组3', '3', '1');
 
 -- ----------------------------
 -- Table structure for tb_mod
@@ -136,7 +104,7 @@ CREATE TABLE `tb_mod` (
   PRIMARY KEY (`m_id`),
   KEY `FKa7v6cim5ugintpofxnd2j5ump` (`pid`),
   CONSTRAINT `FKa7v6cim5ugintpofxnd2j5ump` FOREIGN KEY (`pid`) REFERENCES `tb_mod` (`m_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_mod
@@ -148,39 +116,29 @@ INSERT INTO `tb_mod` VALUES ('10', '流程管理', 'mod/mod_showRightModule.acti
 INSERT INTO `tb_mod` VALUES ('11', '部门管理', 'dep/dep.action', 'WEB/imgs/icos/zzgl.jpg', null, null, '1', '7');
 INSERT INTO `tb_mod` VALUES ('12', '员工管理', 'emp/emp_index.action', 'WEB/imgs/icos/yggl.jpg', null, null, '1', '7');
 INSERT INTO `tb_mod` VALUES ('13', ' 模块管理', 'mod/mod.action', 'WEB/imgs/icos/mkgl.jpg', null, null, '1', '8');
-INSERT INTO `tb_mod` VALUES ('14', '账号管理', null, 'WEB/imgs/icos/zhgl.jpg', null, null, '1', '8');
+INSERT INTO `tb_mod` VALUES ('14', '账号管理', 'group/group.action', 'WEB/imgs/icos/zhgl.jpg', null, null, '1', '8');
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for tb_user
 -- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(16) NOT NULL,
-  `password` varchar(16) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE `tb_user` (
+  `u_id` int(11) NOT NULL AUTO_INCREMENT,
+  `u_name` varchar(255) DEFAULT NULL,
+  `u_pwd` varchar(255) DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  `g_id` int(11) DEFAULT NULL,
+  `emp` int(11) DEFAULT NULL,
+  PRIMARY KEY (`u_id`),
+  UNIQUE KEY `UK_mrwea7a27xda3rdws81opvb47` (`emp`),
+  KEY `FKiykge2nim99gomxw878qgvbu0` (`g_id`),
+  CONSTRAINT `FKiykge2nim99gomxw878qgvbu0` FOREIGN KEY (`g_id`) REFERENCES `tb_gorup` (`g_id`),
+  CONSTRAINT `FKqy7jfc8vtkudr63dvwx1jilio` FOREIGN KEY (`emp`) REFERENCES `tb_emp` (`emp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user
+-- Records of tb_user
 -- ----------------------------
-
--- ----------------------------
--- Table structure for user_info
--- ----------------------------
-DROP TABLE IF EXISTS `user_info`;
-CREATE TABLE `user_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uname` varchar(20) DEFAULT NULL,
-  `unumber` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of user_info
--- ----------------------------
-INSERT INTO `user_info` VALUES ('1', '赵小云', '89757');
-INSERT INTO `user_info` VALUES ('2', '朱张飞', '89758');
-INSERT INTO `user_info` VALUES ('3', '关子羽', '89759');
-INSERT INTO `user_info` VALUES ('4', '马超云', '89760');
-INSERT INTO `user_info` VALUES ('5', '黄忠国', '89761');
+INSERT INTO `tb_user` VALUES ('13', '11111111', '111111111', '1', '7', '2');
+INSERT INTO `tb_user` VALUES ('14', '2222', '22222', '1', '8', '7');
+INSERT INTO `tb_user` VALUES ('17', 'aaa', 'aaa', '1', '5', '1');

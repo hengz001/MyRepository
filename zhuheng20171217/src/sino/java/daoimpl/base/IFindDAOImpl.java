@@ -42,19 +42,6 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 	public PageView<T> findByPage(Class<T> entityClass, String sql, Object[] keys, int pageNo, int pageSize) {
 		PageView<T> pv = new PageView<T>();
 		int totalNo = getTotal(sql, keys,entityClass);
-//		pv.setTotalNo(totalNo);
-//		Query<T> query = getSession().createQuery(sql,entityClass);
-//		if(null!=keys && keys.length>0){
-//			for (int j = 0; j < keys.length; j++) {
-//				query.setParameter(j, keys[j]);
-//			}
-//		}
-//		query.setFirstResult(pageNo).setMaxResults(pageSize);
-//		List<T> pageList = query.getResultList();
-//		if(null != pageList){
-//			pv.setPageList(pageList);
-//		}
-//		return pv;
 		pv.setTotalNo(totalNo);
 		Query query = getSession().createQuery(sql);
 		if (keys != null && keys.length > 0) {
@@ -89,5 +76,26 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	public T findByKeys(Class<T> entityClass, String xql, Object[] keys) {
+		Query query = getSession().createQuery(xql);
+		if(null!=keys && keys.length>0){
+			for(int i=0; i<keys.length; i++){
+				query.setParameter(i, keys[i]);
+			}
+		}
+		return (T)query.uniqueResult();
+	}
+
+	public List<T> findAllKeys(Class<T> entityClass, String xql, Object[] keys) {
+		Query query = getSession().createQuery(xql);
+		if(null!=keys && keys.length>0){
+			for(int i=0; i<keys.length; i++){
+				query.setParameter(i, keys[i]);
+			}
+		}
+		List<T> lists = query.list();
+		return lists;
 	}
 }
