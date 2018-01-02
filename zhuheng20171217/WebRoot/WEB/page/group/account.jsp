@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				document.location="group/group_deleteGrp?g_id="+gid;
 			}) ;
 			$('#ImpowerId').click(function(){
-				openWindow('impower/impower_showImpowerView.action?mainBodyId='+gid+'&mainBodyType=group',600,400)
+				openWindow('impower/impower_showImpowerView.action?mainBodyId='+gid+'&mainBodyType=group',800,600)
 			});	
  		}
  		
@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  				document.location = "user/user_deleteUser?u_id="+u_id;
  			});
  			$('#ImpowerId').click(function(){
-				openWindow('impower/impower_showImpowerView.action?mainBodyId='+u_id+'&mainBodyType=user',600,400)
+				openWindow('impower/impower_showImpowerView.action?mainBodyId='+u_id+'&mainBodyType=user',800,600)
 			});
  		
  			var url = "user/user_showUser?u_id="+u_id;

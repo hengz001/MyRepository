@@ -1,13 +1,17 @@
 package sino.java.action.impower;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import sino.java.po.group.Group;
+import sino.java.po.impower.Impower;
 import sino.java.po.module.Module;
 import sino.java.po.user.User;
 import sino.java.service.group.GroupServiceFinder;
@@ -37,9 +41,37 @@ public class ImpowerAction {
 	
 	private String mainBodyType;
 	
+	private Impower impower = new Impower();
+	
+	private String str; 
+	
+	private int module_id;
+	
 	public String execute(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+	
+		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/xml;charaset=UTF-8");
 		
-		return "index";
+		try {
+			PrintWriter out = response.getWriter();
+			Impower impower = impowerService.findImpower(mainBodyId, mainBodyType, module_id);
+			if(null != impower){
+				out.println("<impower>");
+				out.println("<impower-saveOption>"+impower.getSaveOption()+"</impower-saveOption>");
+				out.println("<impower-queryOption>"+impower.getQueryOption()+"</impower-queryOption>");
+				out.println("<impower-updateOption>"+impower.getUpdateOption()+"</impower-updateOption>");
+				out.println("<impower-deleteOption>"+impower.getDeleteOption()+"</impower-deleteOption>");
+				out.println("</impower>");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public String showImpowerView(){
@@ -57,6 +89,35 @@ public class ImpowerAction {
 				"FROM Module m WHERE m.flag=1");
 		request.setAttribute("modules", modules);
 		return "showImpowerView";
+	}
+	
+	public String impower(){
+		impowerService.impower(mainBodyId, mainBodyType, str, module_id);
+		return "impower";
+	}
+
+	public Impower getImpower() {
+		return impower;
+	}
+
+	public void setImpower(Impower impower) {
+		this.impower = impower;
+	}
+
+	public String getStr() {
+		return str;
+	}
+
+	public void setStr(String str) {
+		this.str = str;
+	}
+
+	public int getModule_id() {
+		return module_id;
+	}
+
+	public void setModule_id(int module_id) {
+		this.module_id = module_id;
 	}
 
 	public int getMainBodyId() {

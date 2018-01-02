@@ -8,6 +8,7 @@
 	<package name="impower" namespace="/" extends="struts-default">
 		<action name="impower_*" class="sino.java.action.impower.ImpowerAction" method="{1}">
 			<result name="showImpowerView">/WEB/page/impower/impower.jsp</result>
+			<result name="impower">/WEB/page/common/close.html</result>
 		</action>
 	</package>
 </struts>

@@ -1,5 +1,7 @@
+<%@page import="sino.java.po.user.User"%>
+<%@page import="sino.java.po.group.Group"%>
 <%@page import="sino.java.po.module.Module"%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -36,11 +38,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	</style>
 	<script type="text/javascript">
-	   function t_showName(m_name) {
+	   var m_id = 0;
+	   function t_showName(m_name,module_id,mainBodyId,mainBodyTYpe) {
+	   		m_id = module_id;
 		   $("#rid").html(m_name);
 		   $("#aid").html(m_name);
 		   $("#did").html(m_name);
 		   $("#uid").html(m_name);
+	   		
+	   		var ck = document.getElementsByName("ck");
+	   		for(i=0;i<ck.length;i++){
+	   			ck[i].checked = false;
+	   		}
+	   		
+	   		var url = "impower/impower.action?mainBodyId="+mainBodyId
+					+"&mainBodyType="+mainBodyTYpe
+					+"&module_id="+module_id;
+			alert(url);
+	   }
+	   
+	   function t_impower(mainBody_id,mainBody_type){
+			if(m_id==0){
+				alert("必须选择需要授权的模块");
+			}else{
+				var str = "";
+				var ss = document.getElementsByName("ck");
+				for(i=0;i<ss.length;i++){
+					if(ss[i].checked){
+						str += ss[i].value+",";
+					}
+				}
+				var url = "impower/impower_impower.action?mainBodyId="+mainBody_id
+					+"&mainBodyType="+mainBody_type
+					+"&str="+str
+					+"&module_id="+m_id;
+				document.location = url;
+			}				   
 	   }
 	</script>
 
@@ -73,19 +106,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    d.add(0,-1,"权限");
 				    <%
 				      List<Module> modules = (List)request.getAttribute("modules");
+				      
+				      Group group = (Group)request.getAttribute("group");
+				      
+				      User user = (User)request.getAttribute("user");
+				      
 				      int pid = 0;
 				      for(Module module : modules) {
 				    	  if(module.getParent()==null) {
 				    		  pid = module.getM_id();
+                             if(null == user){
+ 							  %>
+                               d.add(<%=pid%>,0,"<%=module.getM_name()%>","javascript:void(t_showName('<%=module.getM_name()%>',<%=module.getM_id()%>,<%=group.getG_id()%>,'group'))")
+                              <%                             
+                             }else{
                               %>
-                               d.add(<%=pid%>,0,"<%=module.getM_name()%>","javascript:void(t_showName('<%=module.getM_name()%>'))")
+                               d.add(<%=pid%>,0,"<%=module.getM_name()%>","javascript:void(t_showName('<%=module.getM_name()%>',<%=module.getM_id()%>,<%=user.getU_id()%>,'user'))")
                               <%
+                             }
 				    	  }
 				    	  if(module.getChildren().size()!=0) {
 				    		  for(Module moduleChild : module.getChildren()) {
-				    			  %>
-				    			  d.add(<%=moduleChild.getM_id()%>,<%=pid%>,"<%=moduleChild.getM_name()%>","javascript:void(t_showName('<%=moduleChild.getM_name()%>'))")
+				    			 if(null == user){
+							      %>
+				    			  d.add(<%=moduleChild.getM_id()%>,<%=pid%>,"<%=moduleChild.getM_name()%>","javascript:void(t_showName('<%=moduleChild.getM_name()%>',<%=moduleChild.getM_id()%>,<%=group.getG_id()%>,'group'))")
+				    			  <%		                             
+	                             }else{
+	                               %>
+				    			  d.add(<%=moduleChild.getM_id()%>,<%=pid%>,"<%=moduleChild.getM_name()%>","javascript:void(t_showName('<%=moduleChild.getM_name()%>',<%=moduleChild.getM_id()%>,<%=user.getU_id()%>,'user'))")
 				    			  <%
+	                             }
 				    		  }
 				    	  }
 				      }
@@ -143,9 +193,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</li>
 				<li>
-				  <div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')">
-					授权
-					</div>
+				<s:if test="#request.group == null">
+				  <div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" 
+					  onclick="t_impower(<s:property value="#request.user.u_id"/>,'user')">
+					用户授权
+				</s:if>
+				<s:else>
+				  <div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" 
+					  onclick="t_impower(<s:property value="#request.group.g_id"/>,'group')">
+					用户组授权
+				</s:else>
+					
+				</div>
 				</li>
 			</ul>
  
