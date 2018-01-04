@@ -11,6 +11,8 @@
 			<result name="getEmps">/WEB/page/user/selectemp.jsp</result>
 			<result name="addUser">/WEB/page/common/close.html</result>
 			<result name="deleteUser">/WEB/page/common/close.html</result>
+			<result name="login">/WEB/page/main/main.jsp</result>
+			<result name="unlogin">/index.jsp</result>
 		</action>
 	</package>
 </struts>

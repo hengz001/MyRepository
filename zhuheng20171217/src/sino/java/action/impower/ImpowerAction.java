@@ -59,14 +59,12 @@ public class ImpowerAction {
 		try {
 			PrintWriter out = response.getWriter();
 			Impower impower = impowerService.findImpower(mainBodyId, mainBodyType, module_id);
-			if(null != impower){
-				out.println("<impower>");
-				out.println("<impower-saveOption>"+impower.getSaveOption()+"</impower-saveOption>");
-				out.println("<impower-queryOption>"+impower.getQueryOption()+"</impower-queryOption>");
-				out.println("<impower-updateOption>"+impower.getUpdateOption()+"</impower-updateOption>");
-				out.println("<impower-deleteOption>"+impower.getDeleteOption()+"</impower-deleteOption>");
-				out.println("</impower>");
-			}
+			out.println("<impower>");
+			out.println("<impower-saveOption>"+(null!=impower?impower.getSaveOption():0)+"</impower-saveOption>");
+			out.println("<impower-queryOption>"+(null!=impower?impower.getQueryOption():0)+"</impower-queryOption>");
+			out.println("<impower-updateOption>"+(null!=impower?impower.getUpdateOption():0)+"</impower-updateOption>");
+			out.println("<impower-deleteOption>"+(null!=impower?impower.getDeleteOption():0)+"</impower-deleteOption>");
+			out.println("</impower>");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

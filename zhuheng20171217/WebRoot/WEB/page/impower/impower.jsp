@@ -54,7 +54,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   		var url = "impower/impower.action?mainBodyId="+mainBodyId
 					+"&mainBodyType="+mainBodyTYpe
 					+"&module_id="+module_id;
-			alert(url);
+			
+			$.get(url,null,function(data){
+				var saveOption = $(data).find("impower-saveOption").text();
+				var deleteOption = $(data).find("impower-deleteOption").text();
+				var updateOption = $(data).find("impower-updateOption").text();
+				var queryOption = $(data).find("impower-queryOption").text();
+			
+				if(saveOption==1){
+					$("#a").attr("checked",true);
+				}
+				if(deleteOption==1){
+					$("#d").attr("checked",true);
+				}
+				if(updateOption==1){
+					$("#u").attr("checked",true);
+				}
+				if(queryOption==1){
+					$("#r").attr("checked",true);
+				}
+			});
 	   }
 	   
 	   function t_impower(mainBody_id,mainBody_type){

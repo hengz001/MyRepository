@@ -46,6 +46,15 @@ public class UserAction{
 	
 	private int u_id;
 	
+	public String login(){
+		User obj  = userFind.login(user);
+		if(null == obj){
+			return "unlogin";
+		}else{
+			return "login";
+		}
+	}
+	
 	public String deleteUser(){
 		userService.deleteByLogic(User.class,new Serializable[]{u_id} , "u_id", "flag");
 		return "deleteUser";
