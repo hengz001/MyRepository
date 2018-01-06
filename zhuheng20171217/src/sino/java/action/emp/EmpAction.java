@@ -83,7 +83,7 @@ public class EmpAction {
 			}
 			sb.append(" AND ");
 			sb.append("e.emp_name=?");
-			System.out.println(name01);
+//			System.out.println(name01);
 			parameter.add(name01.trim());
 			request.setAttribute("name01",name01);
 		}
@@ -128,7 +128,7 @@ public class EmpAction {
 		if(null!=name && !name.equals("")){
 			sb.append(" AND ");
 			sb.append("e.emp_name=?");
-			System.out.println(name);
+//			System.out.println(name);
 			parameter.add(name.trim());
 			request.setAttribute("name01",name);
 		}
@@ -225,13 +225,16 @@ public class EmpAction {
 			emp.setEmp_img(path+imageFileName);
 		}
 		
-		if(depId != null && !"".equals(depId)){
+		if(depId != null && !"".equals(depId) && !"请选择".equals(depId)){
 			dep_id = Integer.parseInt(depId);
+			emp.setDep(depServiceFind.findById(Department.class, dep_id));
 		}
 		
-		emp.setDep(depServiceFind.findById(Department.class, dep_id));
-		emp.setFlag(1);
-		empService.save(emp);
+		if(null != emp.getEmp_name() && !"".equals(emp.getEmp_name())){
+			emp.setFlag(1);
+			empService.save(emp);
+		}
+		
 		return "addEmp";
 	}
 	

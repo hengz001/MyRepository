@@ -26,7 +26,7 @@ public class GroupServiceImpl extends AbstractDAO implements GroupService{
 		int gid = 0;
 		if(null!=group && group.getG_name().equals("公共组")){
 			gid = group.getG_id();
-			System.out.println("不允许删除公共组");
+//			System.out.println("不允许删除公共组");
 		}else{
 			Set<User> users =group.getUsers();
 			for(User user : users){

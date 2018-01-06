@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib uri="/struts-tags" prefix="s"%>
+<%@include file="../common/common.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -50,14 +50,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td  style="border-right:1px dashed #aaaaaa">
 					<s:set name="index" value="-120"></s:set>
 					<s:iterator value="#request.subMod">
-						<s:set name="index" value="#index+200"></s:set>
-						<div class="iconButton" style="position:absolute;left:<s:property value="#index"/>px; top:100px">
-						 <div class="iconImage" 
-							 style="background-image:url(<s:property value="m_path_c"/>);" 
-							 onclick="openWindow('<s:property value="m_address"/>',600,500)">
-						 </div>
-						 <div style="text-align:center" onclick="openWindow('<s:property value="m_address"/>',600,500,'dep')"><s:property value="m_name"/></div>
-						</div>
+						
+						<c:choose>
+							<c:when test="${zh:hasOption(person.u_id,m_name,'r') }">
+								<s:set name="index" value="#index+200"></s:set>
+								<div class="iconButton" style="position:absolute;left:<s:property value="#index"/>px; top:100px">
+								 <div class="iconImage" 
+									 style="background-image:url(<s:property value="m_path_c"/>);" 
+									 onclick="openWindow('<s:property value="m_address"/>',600,500)">
+								 </div>
+								 <div style="text-align:center" onclick="openWindow('<s:property value="m_address"/>',600,500,'dep')"><s:property value="m_name"/></div>
+								</div>
+							</c:when>
+							<c:otherwise>
+							
+							</c:otherwise>
+						</c:choose>
+						
 					</s:iterator>
 					
 					

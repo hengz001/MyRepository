@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib uri="/struts-tags" prefix="s" %>
+<%@include file="../common/common.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -54,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div style="background-image:url(WEB/imgs/mainFunction_bar.jpg); width:188px; height:403px;">
 		<s:iterator value="#request.mods">
+			<s:if test="parent==null">
 			<div style="height:35px"></div>
 			<div class="functionButton" 
 				style="background-image:url('<s:property value="m_path_c"/>')"
@@ -63,6 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<p class="textShadow" onclick="gotoLocation('<s:property value="m_address"/>')">
 				&nbsp;&nbsp;<s:property value="m_name"/></p>
 			</div>
+			</s:if>
 		</s:iterator>
 		<!-- 
 		<div style="height:35px"></div>

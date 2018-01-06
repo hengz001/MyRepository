@@ -76,7 +76,7 @@ public class DepAction implements RequestAware{
 		int pageNo = 0;
 		String pageNo_str = ServletActionContext.getRequest().getParameter("pager.offset");
 		if(null != pageNo_str){
-			System.out.println(pageNo_str);
+//			System.out.println(pageNo_str);
 			pageNo = Integer.parseInt(pageNo_str);
 		}
 		int pageSize = 5;

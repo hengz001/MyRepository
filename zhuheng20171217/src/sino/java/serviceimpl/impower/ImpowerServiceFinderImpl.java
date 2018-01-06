@@ -77,6 +77,12 @@ public class ImpowerServiceFinderImpl extends AbstractFinder<Impower> implements
 					flag = true;
 				}
 			}
+			if("e".equals(str)){
+				int index = impower.getExtOption();
+				if(index == 1){
+					flag = true;
+				}
+			}
 			
 		}
 		
@@ -115,6 +121,12 @@ public class ImpowerServiceFinderImpl extends AbstractFinder<Impower> implements
 					flag = true;
 				}
 			}
+			if("e".equals(str)){
+				int index = imp.getExtOption();
+				if(index == 1){
+					flag = true;
+				}
+			}
 			
 		}
 		return flag;
@@ -123,13 +135,9 @@ public class ImpowerServiceFinderImpl extends AbstractFinder<Impower> implements
 	public List<Module> findByUser(int u_id){
 		Map<Integer, Impower> maps = new HashMap<Integer, Impower>();
 		
-		//获取用户权限
-		List<Impower> u_imps = findByUserId(u_id);
-		for (Impower impower : u_imps) {
-			maps.put(impower.getModule_id(), impower);
-		}
 		//获取用户组
 		User user = userFind.findById(User.class, u_id);
+		
 		//获取用户组权限
 		if(null != user){
 			if(null != user.getGroup()){
@@ -140,6 +148,14 @@ public class ImpowerServiceFinderImpl extends AbstractFinder<Impower> implements
 				}
 			}
 		}
+		
+		//获取用户权限
+		List<Impower> u_imps = findByUserId(u_id,0);
+		for (Impower impower : u_imps) {
+			maps.put(impower.getModule_id(),impower);
+		}
+		
+		//判断权限
 		List<Integer> nrID = new ArrayList<Integer>();
 		Set<Map.Entry<Integer,Impower>> entrys = maps.entrySet();
 		for (Map.Entry<Integer, Impower> entry : entrys) {
@@ -148,18 +164,27 @@ public class ImpowerServiceFinderImpl extends AbstractFinder<Impower> implements
 				nrID.add(entry.getKey());
 			}
 		}
+		
 		//删除没有查看权限的模块
 		for (Integer key : nrID) {
 			maps.remove(key);
 		}
+		
 		//是否存在模块
 		if(maps.isEmpty()){
 			return new ArrayList<Module>();
 		}
+		
 		List<Module> mods = moduleFind.findAllByCollection(Module.class,
 				"FROM Module m WHERE m.m_id in (:ids)",maps.keySet());
 		
 		return mods;
+	}
+	
+	public List<Impower> findByUserId(int u_id, int ext_id){
+		return findAllKeys(Impower.class, 
+				"FROM Impower imp WHERE imp.mainBody_id=? AND imp.mainBody_type=? AND imp.extOption=?", 
+				new Object[]{u_id,Impower.USER_TYPE,ext_id});
 	}
 	
 	public List<Impower> findByUserId(int u_id){

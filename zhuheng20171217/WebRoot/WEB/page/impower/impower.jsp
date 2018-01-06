@@ -45,6 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   $("#aid").html(m_name);
 		   $("#did").html(m_name);
 		   $("#uid").html(m_name);
+		   $("#eid").html(m_name);
 	   		
 	   		var ck = document.getElementsByName("ck");
 	   		for(i=0;i<ck.length;i++){
@@ -60,6 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var deleteOption = $(data).find("impower-deleteOption").text();
 				var updateOption = $(data).find("impower-updateOption").text();
 				var queryOption = $(data).find("impower-queryOption").text();
+				var extOption = $(data).find("impower-extOption").text();
 			
 				if(saveOption==1){
 					$("#a").attr("checked",true);
@@ -73,6 +75,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				if(queryOption==1){
 					$("#r").attr("checked",true);
 				}
+				if(extOption==1){
+					$("#e").attr("checked",true);
+				}
 			});
 	   }
 	   
@@ -80,18 +85,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			if(m_id==0){
 				alert("必须选择需要授权的模块");
 			}else{
-				var str = "";
+				var str = ",";
 				var ss = document.getElementsByName("ck");
 				for(i=0;i<ss.length;i++){
-					if(ss[i].checked){
+					if(ss[i].checked == true){
 						str += ss[i].value+",";
 					}
 				}
 				var url = "impower/impower_impower.action?mainBodyId="+mainBody_id
 					+"&mainBodyType="+mainBody_type
 					+"&str="+str
-					+"&module_id="+m_id;
-				document.location = url;
+					+"&module_id="+m_id
+					+"&math="+Math.random();
+					
+				document.location = url; 
 			}				   
 	   }
 	   
@@ -105,6 +112,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 			}
 		
+		}
+		
+		function eOption(){
+			if(document.getElementById('e').checked==false){
+	   			return;
+	   		}
+			var ck = document.getElementsByName('ck');
+			for(i=0;i<ck.length;i++){
+				if('e'!=ck[i].getAttribute('id')){
+					ck[i].checked = false;
+				}
+			}
 		}
 	</script>
 
@@ -200,6 +219,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				     <td><label id="uid">****</label>修改</td>
 				     <td><input type="checkbox" name="ck" value="u" id="u"></td>
 				   </tr>
+				   
+				   <s:if test="#request.group==null">
+				   <tr>
+				     <td><label id="eid">****</label>用户组权限优先</td>
+				     <td><input type="checkbox" name="ck" value="e" id="e" onclick="eOption()"></td>
+				   </tr>
+				   </s:if>
+				   
 				</table>
 				</div>
 			</td>

@@ -64,6 +64,7 @@ public class ImpowerAction {
 			out.println("<impower-queryOption>"+(null!=impower?impower.getQueryOption():0)+"</impower-queryOption>");
 			out.println("<impower-updateOption>"+(null!=impower?impower.getUpdateOption():0)+"</impower-updateOption>");
 			out.println("<impower-deleteOption>"+(null!=impower?impower.getDeleteOption():0)+"</impower-deleteOption>");
+			out.println("<impower-extOption>"+(null!=impower?impower.getExtOption():0)+"</impower-extOption>");
 			out.println("</impower>");
 		} catch (IOException e) {
 			e.printStackTrace();

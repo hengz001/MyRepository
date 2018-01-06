@@ -24,6 +24,8 @@ public class Impower implements Serializable{
 	private int updateOption;
 	
 	private int deleteOption;
+	
+	private int extOption;
 
 	//授权
 	public void setOption(String str){
@@ -31,21 +33,33 @@ public class Impower implements Serializable{
 		this.queryOption = 0;
 		this.updateOption = 0;
 		this.deleteOption = 0;
+		this.extOption = 0;
 		
 		String strs[] = str.split(",");
 		for(int i=0; i<strs.length; i++){
-			if("a".contentEquals(strs[i])){
+			if("a".equals(strs[i])){
 				this.saveOption=1;
-			}else if("r".contentEquals(strs[i])){
+			}else if("r".equals(strs[i])){
 				this.queryOption=1;
-			}else if("u".contentEquals(strs[i])){
+			}else if("u".equals(strs[i])){
 				this.updateOption=1;
-			}else if("d".contentEquals(strs[i])){
+			}else if("d".equals(strs[i])){
 				this.deleteOption=1;
+			}else if("e".equals(strs[i])){
+				this.extOption=1;
 			}
 		}
 	}
 
+	public int getExtOption() {
+		return extOption;
+	}
+
+	public void setExtOption(int extOption) {
+		this.extOption = extOption;
+	}
+
+	
 	public int getIm_id() {
 		return im_id;
 	}

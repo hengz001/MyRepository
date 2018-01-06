@@ -15,6 +15,7 @@
 		<property name="queryOption" ></property>
 		<property name="updateOption" ></property>
 		<property name="deleteOption" ></property>
+		<property name="extOption" ></property>
 		
 	</class>
 </hibernate-mapping>
