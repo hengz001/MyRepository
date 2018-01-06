@@ -118,7 +118,7 @@ form {
 
 			<center>
 				<pg:pager items="${pv.totalNo}" maxPageItems="5" maxIndexPages="5"
-					url="dep/dep_index.action">
+					url="dep/dep_findByPage.action">
 					<pg:first>
 						<a href="${pageUrl}">首页</a>
 					</pg:first>

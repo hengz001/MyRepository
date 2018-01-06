@@ -80,5 +80,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
+	
+	<bean id="checkOption" class="sino.java.common.CheckOption">
+		<property name="imf" ref="impowerServiceFinder"></property>
+	</bean>
+	
 </beans>

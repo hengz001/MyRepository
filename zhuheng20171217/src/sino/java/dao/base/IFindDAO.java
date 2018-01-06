@@ -3,7 +3,7 @@ package sino.java.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
-import sino.java.po.common.PageView;
+import sino.java.common.PageView;
 
 public interface IFindDAO<T> {
 	

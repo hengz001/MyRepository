@@ -58,4 +58,12 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- 配置JSTL标签 -->
+	<jsp-config>
+	   <taglib>
+	      <taglib-uri>http://www.zh.com/oa</taglib-uri>
+	      <taglib-location>/WEB-INF/zh.tld</taglib-location>
+	   </taglib>
+	</jsp-config>
+
 </web-app>

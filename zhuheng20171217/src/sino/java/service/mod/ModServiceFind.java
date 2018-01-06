@@ -1,7 +1,7 @@
 package sino.java.service.mod;
 
+import sino.java.common.PageView;
 import sino.java.dao.base.BaseFinder;
-import sino.java.po.common.PageView;
 import sino.java.po.module.Module;
 
 public interface ModServiceFind extends BaseFinder<Module>{

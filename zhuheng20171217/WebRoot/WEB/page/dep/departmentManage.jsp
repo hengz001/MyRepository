@@ -4,7 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@include file="../common/common.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -128,15 +128,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="updateDep()">
-									修改
-							</div>
-							<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="showAddDep()">
-									添加
-							</div>
-							<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="deleteDep()">
-									删除
-							</div>
+						
+							<c:choose>
+								<c:when test="${zh:hasOption(person.u_id,'部门管理','u') }">
+									<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="updateDep()">
+										修改
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="javascript:void(alert('权限不足'))">
+										修改
+									</div>
+								</c:otherwise>
+							</c:choose>
+							
+							<c:choose>
+								<c:when test="${zh:hasOption(person.u_id,'部门管理','a') }">
+									<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="showAddDep()">
+										添加
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="javascript:void(alert('权限不足'))">
+										添加
+									</div>
+								</c:otherwise>
+							</c:choose>							
+							
+							<c:choose>
+								<c:when test="${zh:hasOption(person.u_id,'部门管理','d') }">
+									<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="deleteDep()">
+										删除
+									</div>	
+								</c:when>
+								<c:otherwise>
+									<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:left" onclick="javascript:void(alert('权限不足'))">
+										删除
+									</div>	
+								</c:otherwise>							
+							</c:choose>							
 						</td>
 					</tr>
 				</table>
@@ -153,9 +183,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 							<tr>
 								<td align="center">查询条件:<input type="text" name="type" id="type"/>
-								<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:right" onclick="findPageDep()">
-										查询
-								</div>
+								<c:choose>
+									<c:when test="${zh:hasOption(person.u_id,'部门管理','r') }">
+										<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:right" onclick="findPageDep()">
+												查询
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" style="float:right" onclick="javascript:void(alert('权限不足'))">
+												查询
+										</div>	
+									</c:otherwise>							
+								</c:choose>			
 								</td>
 							</tr>
 						</table>

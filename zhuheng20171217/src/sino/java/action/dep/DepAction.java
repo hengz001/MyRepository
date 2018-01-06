@@ -9,7 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import sino.java.po.common.PageView;
+import sino.java.common.PageView;
 import sino.java.po.dep.Department;
 import sino.java.service.dep.DepService;
 import sino.java.service.dep.DepServiceFind;

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import sino.java.po.common.PageView;
+import sino.java.common.PageView;
 import sino.java.po.emp.Employee;
 import sino.java.po.group.Group;
 import sino.java.po.user.User;
@@ -47,10 +47,12 @@ public class UserAction{
 	private int u_id;
 	
 	public String login(){
+		HttpServletRequest request = ServletActionContext.getRequest();
 		User obj  = userFind.login(user);
 		if(null == obj){
 			return "unlogin";
 		}else{
+			request.getSession().setAttribute("person", obj);
 			return "login";
 		}
 	}

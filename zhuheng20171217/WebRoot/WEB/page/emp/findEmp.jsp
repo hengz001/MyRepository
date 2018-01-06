@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </table>
 </form>
 	<center>
-	  <pg:pager items="${pv.totalNo}"  maxPageItems="2" maxIndexPages="2" url="emp/emp_findEmp.action">
+	  <pg:pager items="${pv.totalNo}"  maxPageItems="${pv.pageSize}" maxIndexPages="${pv.pageSize}" url="emp/emp_findEmp.action">
          <s:if test="null != #request.job01">
          	<pg:param name="job01" value="${job01}"/>
          </s:if>

@@ -15,7 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import sino.java.po.common.PageView;
+import sino.java.common.PageView;
 import sino.java.po.dep.Department;
 import sino.java.po.emp.Employee;
 import sino.java.service.dep.DepServiceFind;
@@ -157,6 +157,7 @@ public class EmpAction {
 		}
 		
 		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e WHERE e.flag=1 "+sb.toString(),parameter.toArray(),pageNo, pageSize);
+		pv.setPageSize(pageSize);
 		request.setAttribute("pv", pv);
 		return "findEmp";
 	}
@@ -191,15 +192,15 @@ public class EmpAction {
 	}
 	
 	public String execute(){
-//		HttpServletRequest request = ServletActionContext.getRequest();
-//		int pageSize = 5;
-//		int pageNo = 0;
-//		String pageNo_str = request.getParameter("pager.offset");
-//		if(null != pageNo_str){
-//			pageNo = Integer.parseInt(pageNo_str); 
-//		}
-//		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e",pageNo,pageSize);
-//		request.setAttribute("pv",pv);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int pageSize = 5;
+		int pageNo = 0;
+		String pageNo_str = request.getParameter("pager.offset");
+		if(null != pageNo_str){
+			pageNo = Integer.parseInt(pageNo_str); 
+		}
+		PageView<Employee> pv = empServiceFind.findByPage(Employee.class, "FROM Employee e",pageNo,pageSize);
+		request.setAttribute("pv",pv);
 		return "index";
 	}
 	

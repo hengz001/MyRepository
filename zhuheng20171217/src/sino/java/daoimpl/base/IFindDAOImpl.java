@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import sino.java.common.PageView;
 import sino.java.dao.base.IFindDAO;
-import sino.java.po.common.PageView;
 
 @Repository("iFindDAO")
 @Transactional
