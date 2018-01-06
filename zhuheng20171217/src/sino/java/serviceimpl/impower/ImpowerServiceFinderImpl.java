@@ -1,5 +1,11 @@
 package sino.java.serviceimpl.impower;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,7 +81,9 @@ public class ImpowerServiceFinderImpl extends AbstractFinder<Impower> implements
 		}
 		
 		User user = userFind.findById(User.class, u_id);
-		
+		if(null==user){
+			return flag;
+		}
 		if(null == user.getGroup()){
 			return flag;
 		}
@@ -110,5 +118,59 @@ public class ImpowerServiceFinderImpl extends AbstractFinder<Impower> implements
 			
 		}
 		return flag;
+	}
+	
+	public List<Module> findByUser(int u_id){
+		Map<Integer, Impower> maps = new HashMap<Integer, Impower>();
+		
+		//获取用户权限
+		List<Impower> u_imps = findByUserId(u_id);
+		for (Impower impower : u_imps) {
+			maps.put(impower.getModule_id(), impower);
+		}
+		//获取用户组
+		User user = userFind.findById(User.class, u_id);
+		//获取用户组权限
+		if(null != user){
+			if(null != user.getGroup()){
+				int g_id = user.getGroup().getG_id();
+				List<Impower> g_impowers = findByGroupId(g_id);
+				for (Impower impower : g_impowers) {
+					maps.put(impower.getModule_id(),impower);
+				}
+			}
+		}
+		List<Integer> nrID = new ArrayList<Integer>();
+		Set<Map.Entry<Integer,Impower>> entrys = maps.entrySet();
+		for (Map.Entry<Integer, Impower> entry : entrys) {
+			Impower imp = entry.getValue();
+			if(imp.getQueryOption()==0){
+				nrID.add(entry.getKey());
+			}
+		}
+		//删除没有查看权限的模块
+		for (Integer key : nrID) {
+			maps.remove(key);
+		}
+		//是否存在模块
+		if(maps.isEmpty()){
+			return new ArrayList<Module>();
+		}
+		List<Module> mods = moduleFind.findAllByCollection(Module.class,
+				"FROM Module m WHERE m.m_id in (:ids)",maps.keySet());
+		
+		return mods;
+	}
+	
+	public List<Impower> findByUserId(int u_id){
+		return findAllKeys(Impower.class, 
+				"FROM Impower imp WHERE imp.mainBody_id=? AND imp.mainBody_type=?", 
+				new Object[]{u_id,Impower.USER_TYPE});
+	}
+	
+	public List<Impower> findByGroupId(int g_id){
+		return findAllKeys(Impower.class, 
+				"FROM Impower imp WHERE imp.mainBody_id=? AND imp.mainBody_type=?", 
+				new Object[]{g_id,Impower.GROUP_TYPE});
 	}
 }

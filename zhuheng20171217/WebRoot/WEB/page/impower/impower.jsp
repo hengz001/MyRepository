@@ -94,6 +94,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				document.location = url;
 			}				   
 	   }
+	   
+	   function choose(){
+			var ck = document.getElementsByName("ck");
+			for(i=0;i<ck.length;i++){
+				if(ck[i].checked==true){
+					ck[i].checked=false;
+				}else{
+					ck[i].checked=true;
+				}
+			}
+		
+		}
 	</script>
 
   </head>
@@ -207,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 				<li></li>
 				<li>
-					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')">
+					<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" onclick="choose();">
 					全选
 					</div>
 				</li>

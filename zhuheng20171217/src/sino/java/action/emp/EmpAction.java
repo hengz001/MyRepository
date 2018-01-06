@@ -210,27 +210,28 @@ public class EmpAction {
 		int dep_id = 0;
 		
 		String realPath = ServletActionContext.getServletContext().getRealPath(path);
-		System.out.println(realPath);
-		System.out.println(imageFileName);
-		if(null == imageFileName){
-			return null;
+//		System.out.println(realPath);
+//		System.out.println(imageFileName);
+		if(null != imageFileName){
+			File saveFile = new File(new File(realPath),imageFileName);
+			if(!saveFile.getParentFile().exists()){
+				saveFile.getParentFile().mkdirs();
+			}
+			try {
+				FileUtils.copyFile(image, saveFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			emp.setEmp_img(path+imageFileName);
 		}
-		File saveFile = new File(new File(realPath),imageFileName);
-		if(!saveFile.getParentFile().exists()){
-			saveFile.getParentFile().mkdirs();
-		}
-		try {
-			FileUtils.copyFile(image, saveFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		if(depId != null && !"".equals(depId)){
 			dep_id = Integer.parseInt(depId);
 		}
+		
 		emp.setDep(depServiceFind.findById(Department.class, dep_id));
-		emp.setEmp_img(path+imageFileName);
-		empService.save(emp);
 		emp.setFlag(1);
+		empService.save(emp);
 		return "addEmp";
 	}
 	

@@ -24,7 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <frameset rows="80px,*" border="0" >
 	<frame src="WEB/page/main/main_top.jsp" scrolling="no" noresize="noresize"/>
 	<frameset cols="188px,*" border="0">
+	  <!-- 
 	  <frame src="mod/mod_showLeftModule.action" scrolling="no" noresize="noresize">
+	   -->
+	  <frame src="impower/impower_getUserModules.action" scrolling="no" noresize="noresize">
 	  <frame src="WEB/page/main/main_right.jsp" name="rightFrame" scrolling="no" noresize="noresize">
 	  <noframes>
 	  	<body>

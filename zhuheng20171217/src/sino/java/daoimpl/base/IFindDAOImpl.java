@@ -1,6 +1,7 @@
 package sino.java.daoimpl.base;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -98,4 +99,11 @@ public class IFindDAOImpl<T> implements IFindDAO<T>{
 		List<T> lists = query.list();
 		return lists;
 	}
+	
+
+	public List<T> findAllByCollection(Class<T> entryClass,String xql,Collection cn){
+		Query query = getSession().createQuery(xql);
+		return query.setParameterList("ids", cn).list();
+	}
+
 }

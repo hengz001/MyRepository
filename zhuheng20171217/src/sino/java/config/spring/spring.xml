@@ -82,7 +82,9 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<bean id="checkOption" class="sino.java.common.CheckOption">
-		<property name="imf" ref="impowerServiceFinder"></property>
+		<!-- 
+		 -->
+		 <property name="imf" ref="impowerServiceFinder"></property>
 	</bean>
 	
 </beans>

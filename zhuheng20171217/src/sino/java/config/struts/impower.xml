@@ -9,6 +9,7 @@
 		<action name="impower_*" class="sino.java.action.impower.ImpowerAction" method="{1}">
 			<result name="showImpowerView">/WEB/page/impower/impower.jsp</result>
 			<result name="impower">/WEB/page/common/close.html</result>
+			<result name="getUserModules">/WEB/page/main/main_left.jsp</result>
 		</action>
 	</package>
 </struts>

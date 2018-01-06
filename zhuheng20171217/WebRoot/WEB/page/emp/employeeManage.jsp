@@ -291,7 +291,7 @@ form {
 								name="emp.emp_name" value=""></li>
 							<li>
 								<label>所属部门：</label> 
-									<select name="" id="s1" onchange="find_test()">
+									<select name="emp.dep_id" id="s1" onchange="find_test()">
 										<option value="请选择">--请选择--</option>
 										<s:iterator value="#request.deps">
 											<option value='<s:property value="dep_id"/>'><s:property value="dep_name"/></option>
@@ -300,7 +300,7 @@ form {
 							</li>
 							<li>
 							<label>子部门： </label> 
-								<select name="" id="s2">
+								<select name="depId" id="s2">
 										<option value="请选择">--请选择--</option>
 								</select>
 							</li>

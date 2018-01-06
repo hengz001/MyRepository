@@ -1,6 +1,7 @@
 package sino.java.dao.base;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import sino.java.common.PageView;
@@ -20,4 +21,6 @@ public interface IFindDAO<T> {
 	public T findByKeys(Class<T> entityClass,String xql, Object[] keys);
 	
 	public List<T> findAllKeys(Class<T> entityClass,String xql, Object[] keys);
+
+	public List<T> findAllByCollection(Class<T> entryClass,String xql,Collection cn);
 }

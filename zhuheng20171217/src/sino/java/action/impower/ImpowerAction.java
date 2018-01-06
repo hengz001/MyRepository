@@ -93,6 +93,15 @@ public class ImpowerAction {
 		impowerService.impower(mainBodyId, mainBodyType, str, module_id);
 		return "impower";
 	}
+	
+	public String getUserModules(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		User user = (User)request.getSession().getAttribute("person");
+		int uid = user.getU_id();
+		List<Module> modules = impowerFind.findByUser(uid);
+		request.setAttribute("mods",modules);
+		return "getUserModules";
+	}
 
 	public Impower getImpower() {
 		return impower;

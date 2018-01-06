@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-validator.Checked=src/struts.xml,src/sino/java/serviceimpl/user/UserServiceFindImpl.java,WebRoot/WEB/page/impower/impower.jsp
+validator.Checked=src/struts.xml,src/sino/java/serviceimpl/user/UserServiceFindImpl.java,WebRoot/WEB/page/impower/impower.jsp,src/sino/java/config/spring/spring.xml
 validator.Unchecked=

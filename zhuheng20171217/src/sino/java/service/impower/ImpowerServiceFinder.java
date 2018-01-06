@@ -1,7 +1,10 @@
 package sino.java.service.impower;
 
+import java.util.List;
+
 import sino.java.dao.base.BaseFinder;
 import sino.java.po.impower.Impower;
+import sino.java.po.module.Module;
 
 public interface ImpowerServiceFinder extends BaseFinder<Impower>{
 	
@@ -15,8 +18,10 @@ public interface ImpowerServiceFinder extends BaseFinder<Impower>{
 	public boolean hasOption(int u_id,int m_id,String str);
 	
 	//获取用户可访问模块
-	
+	public List<Module> findByUser(int u_id);
 	//获取用户权限
+	public List<Impower> findByUserId(int u_id);
 	
 	//获取分组权限
+	public List<Impower> findByGroupId(int g_id);
 }
