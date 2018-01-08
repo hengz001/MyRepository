@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 						<c:choose>
 							<c:when test="${zh:hasOption(person.u_id,m_name,'r') }">
-								<s:set name="index" value="#index+200"></s:set>
+								<s:set name="index" value="#index+180"></s:set>
 								<div class="iconButton" style="position:absolute;left:<s:property value="#index"/>px; top:100px">
 								 <div class="iconImage" 
 									 style="background-image:url(<s:property value="m_path_c"/>);" 

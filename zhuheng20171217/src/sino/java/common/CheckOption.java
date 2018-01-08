@@ -6,11 +6,11 @@ public class CheckOption {
 	
 	private static ImpowerServiceFinder imf;
 
-	public static ImpowerServiceFinder getImf() {
+	public  ImpowerServiceFinder getImf() {
 		return imf;
 	}
 
-	public static void setImf(ImpowerServiceFinder imf) {
+	public  void setImf(ImpowerServiceFinder imf) {
 		CheckOption.imf = imf;
 	}
 

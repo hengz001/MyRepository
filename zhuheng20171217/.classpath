@@ -54,6 +54,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts2-spring-plugin-2.3.30.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.3.30.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/pager-taglib-2.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm-identity.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm-jpdl.jar"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_7.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
@@ -70,5 +72,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
