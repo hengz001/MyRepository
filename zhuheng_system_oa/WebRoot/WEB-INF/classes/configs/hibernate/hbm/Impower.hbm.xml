@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping >
+	<class name="sino.java.po.impower.Impower" table="tb_impower">
+		<id name="im_id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="mainBody_id" ></property>
+		<property name="mainBody_type" ></property>
+		<property name="module_id" ></property>
+		<property name="saveOption" ></property>
+		<property name="queryOption" ></property>
+		<property name="updateOption" ></property>
+		<property name="deleteOption" ></property>
+		<property name="extOption" ></property>
+		
+	</class>
+</hibernate-mapping>
+
+	
+	
+	
+	
+	
+	
+	

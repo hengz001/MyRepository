@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping >
+	<class name="sino.java.po.emp.Employee" table="tb_emp">
+		<id name="emp_id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="emp_name"></property>
+		
+		<property name="emp_sn"></property>
+		
+		<property name="emp_sex"></property>
+	
+		<property name="emp_address"></property>
+	
+		<property name="emp_phone"></property>
+	
+		<property name="emp_job"></property>
+	
+	 	<property name="emp_img"></property>
+	 	
+	 	<property name="flag"></property>
+		
+		<many-to-one column="dep_id" name="dep"/>
+		
+		<one-to-one name="user" property-ref="emp" lazy="false"></one-to-one>
+	
+	</class>
+</hibernate-mapping>
+
+

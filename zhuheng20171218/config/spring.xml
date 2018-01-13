@@ -59,6 +59,11 @@
                 </prop>
             </props>
         </property>
+        
+    <property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+        
         <!-- 扫描hibernate注解配置的entity -->
         <property name="packagesToScan" value="sino.java" />
     </bean>

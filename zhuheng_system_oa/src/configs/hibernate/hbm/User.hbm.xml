@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping auto-import="false">
+	<class name="sino.java.po.user.User" table="tb_user">
+		<id name="u_id" >
+			<generator class="native"></generator>
+		</id>
+		<property name="u_name" ></property>
+		<property name="u_pwd"/>
+		<property name="flag"/>
+		<many-to-one name="group" column="g_id"></many-to-one>
+		<many-to-one name="emp" unique="true" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>
+
+	
