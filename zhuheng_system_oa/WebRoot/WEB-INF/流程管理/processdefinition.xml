@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition
+  xmlns="urn:jbpm.org:jpdl-3.2"  name="请假">
+   <start-state name="开始">
+      <transition name="班长审批" to="班长审批"></transition>
+   </start-state>
+   
+   <task-node name="班长审批">
+     <task name="班长审批">
+       <assignment actor-id="bz"></assignment>
+     </task>
+      <transition name="班主任审批" to="班主任审批"></transition>
+   </task-node>
+   
+   <task-node name="班主任审批">
+     <task name="班主任审批">
+       <assignment actor-id="bzr"></assignment>
+     </task>
+      <transition name="结束流程" to="结束流程"></transition>
+   </task-node>
+   
+   <end-state name="结束流程"></end-state>
+</process-definition>

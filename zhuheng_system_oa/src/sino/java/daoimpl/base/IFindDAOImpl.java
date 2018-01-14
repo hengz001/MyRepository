@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.annotation.Resource;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -80,14 +81,15 @@ public class IFindDAOImpl<T> extends HibernateDaoSupport implements IFindDAO<T>{
 		if (index != -1) {
 			xxql = "select count(*) " + sql.substring(index);
 		}
-		Query query = getSession().createQuery(xxql);
+		Session session = getSession();
+		Query query = session.createQuery(sql);
 
 		if (keys != null && keys.length > 0) {
 			for (int i = 0; i < keys.length; i++) {
 				query.setParameter(i, keys[i]);
 			}
 		}
-		totalNo = ((Long) query.uniqueResult()).intValue();
+		totalNo = query.list().size();
 		
 		return totalNo;
 	}

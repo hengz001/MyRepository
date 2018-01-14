@@ -5,7 +5,7 @@
 
 <struts>
 <package name="workFlow" namespace="/" extends="struts-default">
-        <action name="workFlow_*" class="wfAction" method="{1}">
+        <action name="workFlow_*" class="sino.java.action.workFlow.WorkFlowAction" method="{1}">
             <result name="showwf">/WEB/page/workFlow/processManagement.jsp
             </result>
             <result name="deployProcess">/WEB/page/common/close.html

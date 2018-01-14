@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				--------------------------添加流程--------------------------
 			</td>
 		</tr>
-		<form action="bfwf/wf_deployProcess.action" method="post" enctype="multipart/form-data" id="f1">
+		<form action="workFlow/workFlow_deployProcess.action" method="post" enctype="multipart/form-data" id="f1">
 		<tr>
 			<td align="right">
 				流程定义文件：
