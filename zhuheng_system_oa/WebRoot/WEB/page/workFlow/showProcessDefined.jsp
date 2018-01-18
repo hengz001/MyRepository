@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -51,6 +52,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    }
 		}
 	</script>
+	<script type="text/javascript">
+	  function t_test() {
+		  var wf_id = document.getElementById("wf_id").value;
+		  var url = "workFlow/workFlow.action?wf_id="+wf_id;
+		  var img_url = "workFlow/workFlow_showImg?wf_id="+wf_id;
+		  $.get(url,null,function(data){
+			  $("#pf").val(data);
+		  });
+		  $("#pm").attr("src",img_url);
+	  }
+	</script>
   </head>
   
   <body onload="init()">
@@ -68,8 +80,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				流程名：
 			</td>
 			<td align="left" width="85%">
-				<select class="textbox">
-					<option selected="selected">请假</option>
+				<select class="textbox" id="wf_id" onchange="t_test()">
+				    <option value="请选择">--请选择--</option>
+					<s:iterator value="#request.wfs">
+					   <option value="<s:property value="wf_id"/>"><s:property value="wf_name"/></option>
+					</s:iterator>
 				</select>
 			</td>
 		</tr>
@@ -78,11 +93,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table class="normalTable" height="500" width="100%">
 					<tr>
 						<td width="45%" height="500">
-						<textarea style="width:100%; height:500px" class="textbox"></textarea>
+						<textarea style="width:100%; height:500px" class="textbox" id="pf"></textarea>
 						</td>
 						<td width="55%" height="500" align="center">
 						<div style="width:420px;height:500px;border: 1px solid #cccccc;">
-						<img src="" width="420" height="500" border="0" onload="javascript:DrawImage(this,420,500)"/>
+						<img src="" width="420" height="500" border="0" onload="javascript:DrawImage(this,420,500)" id="pm"/>
 						</td>
 						</div>
 					</tr>
