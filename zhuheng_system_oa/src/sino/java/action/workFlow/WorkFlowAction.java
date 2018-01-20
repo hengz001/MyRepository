@@ -8,17 +8,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.struts2.ServletActionContext;
 import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.sun.org.apache.xalan.internal.xsltc.trax.OutputSettings;
-
 import sino.java.po.workFlow.WorkFlow;
 import sino.java.service.workFlow.WorkFlowService;
 import sino.java.service.workFlow.WorkFlowServiceFinder;
