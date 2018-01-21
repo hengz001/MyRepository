@@ -7,6 +7,13 @@ package sino.java.po.workFlow;
  * 
  */
 public class WorkFlow {
+	
+	private int wf_id;
+	private String wf_name;
+	private byte[] processFile;
+	private byte[] processImg;
+	private int flag;
+	
 	public int getWf_id() {
 		return wf_id;
 	}
@@ -38,12 +45,6 @@ public class WorkFlow {
 	public void setProcessImg(byte[] processImg) {
 		this.processImg = processImg;
 	}
-
-	private int wf_id;
-	private String wf_name;
-	private byte[] processFile;
-	private byte[] processImg;
-	private int flag;
 
 	public int getFlag() {
 		return flag;

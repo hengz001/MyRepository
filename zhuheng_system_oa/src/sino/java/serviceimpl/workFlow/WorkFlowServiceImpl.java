@@ -5,6 +5,8 @@ import java.io.ByteArrayInputStream;
 import org.jbpm.graph.def.ProcessDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import sino.java.daoimpl.base.AbstractDAO;
 import sino.java.po.workFlow.WorkFlow;
 import sino.java.service.workFlow.WorkFlowService;
@@ -12,6 +14,7 @@ import sino.java.service.workFlow.WorkFlowServiceFinder;
 
 
 @Service("workFlowService")
+@Transactional
 public class WorkFlowServiceImpl extends AbstractDAO implements WorkFlowService {
 	
 	@Autowired

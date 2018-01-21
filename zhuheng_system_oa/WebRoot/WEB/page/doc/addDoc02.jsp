@@ -23,11 +23,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="WEB/css/mainstyle.css" />
 	<script type="text/javascript" src="WEB/js/mainjs.js"></script>
 	<script type="text/javascript" src="WEB/js/jquery-1.4.2.js"></script>
-
+	<script type="text/javascript">
+		function t_test(){
+			document.getElementById("f1").submit();
+		}
+	</script>
   </head>
   
   <body onload="init()">
 	<div align="center">
+	<form action="doc/doc_addDoc03.action"  method="post" enctype="multipart/form-data" id="f1">
+	<input type="hidden" id="workFlowId" name="workFlowId" value="${workFlow.wf_id}" />
 	<table width="320" height="210" class="normalTable">
 		<tr>
 			<td height="60" align="left" colspan="2"
@@ -41,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				公文名称：
 			</td>
 			<td align="left" width="70%">
-				<input type="text" class="textbox"/>
+				<input type="text" class="textbox" name="doc_title"/>
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				公文描述：
 			</td>
 			<td align="left">
-				<input type="text" class="textbox"/>
+				<input type="text" class="textbox" name="doc_desc"/>
 			</td>
 		</tr>
 		<tr>
@@ -64,19 +70,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					  </span>
 					  <label for="unload" onmouseover="$('#upload').css('display','block');" class="uploader_button">浏览...</label>
 					  <input type="file" onchange="$('#viewfile').attr('value',this.value);$(this).css('display','none');" class="uploader" id="upload"
-					  name="imageFile" />
+					  name="content" />
 					</div>
 					
 			</td>
 		</tr>
 		<tr>
 			<td align="center" colspan="2">
-			<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')">
+			<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')" onclick="t_test()">
 					添加公文
 			</div>
 			</td>
 		</tr>
 	</table>
+	</form>
 	</div>
 </body>
 </html>

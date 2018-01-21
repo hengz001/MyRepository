@@ -9,6 +9,8 @@
 		<action name="doc_*" class="sino.java.action.doc.DocAction" method="{1}">
 			<result name="addDoc">/WEB/page/doc/addDoc01.jsp</result>
 			<result name="addDoc02">/WEB/page/doc/addDoc02.jsp</result>
+			<result name="addDoc03">/WEB/page/common/close.html</result>
+			<result name="myDoc">/WEB/page/doc/myDoc.jsp</result>
 		</action>
 	</package>
 </struts>
