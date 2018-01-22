@@ -11,6 +11,7 @@
 			<result name="addDoc02">/WEB/page/doc/addDoc02.jsp</result>
 			<result name="addDoc03">/WEB/page/common/close.html</result>
 			<result name="myDoc">/WEB/page/doc/myDoc.jsp</result>
+			<result name="openSubmitDoc">/WEB/page/doc/openSubmitDoc.jsp</result>
 		</action>
 	</package>
 </struts>

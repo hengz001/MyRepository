@@ -3,9 +3,13 @@ package sino.java.action.doc;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,6 +39,8 @@ public class DocAction {
 	private File content;
 	
 	private String contentFileName;
+
+	private int doc_id;
 	
 	//显示添加公文页面01
 	public String addDoc(){
@@ -84,6 +90,30 @@ public class DocAction {
 		request.setAttribute("myDocs", myDocs);
 		return "myDoc";
 	}
+	
+	//
+	public String openSubmitDoc(){
+		
+		return "openSubmitDoc";
+	}
+	//下载 
+	public String downloadDoc(){
+		Document doc = documentServiceFind.findById(Document.class, doc_id);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.reset();
+		String loadName = doc.getLoadName();
+		response.setContentType("application/x-download;charset=utf-8");
+		response.setHeader("content-Disposition", "attachment;filename="+loadName);
+		try {
+			OutputStream out = response.getOutputStream();
+			out.write(doc.getContent());
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public int getWorkFlowId() {
 		return workFlowId;
@@ -123,6 +153,14 @@ public class DocAction {
 
 	public void setContentFileName(String contentFileName) {
 		this.contentFileName = contentFileName;
+	}
+
+	public int getDoc_id() {
+		return doc_id;
+	}
+
+	public void setDoc_id(int doc_id) {
+		this.doc_id = doc_id;
 	}
 
 	//文件转换为字节数组

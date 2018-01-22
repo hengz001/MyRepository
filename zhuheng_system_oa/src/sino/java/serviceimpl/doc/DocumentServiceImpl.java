@@ -1,7 +1,11 @@
 package sino.java.serviceimpl.doc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jbpm.JbpmContext;
 import org.jbpm.graph.def.ProcessDefinition;
+import org.jbpm.graph.def.Transition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,5 +39,16 @@ public class DocumentServiceImpl extends AbstractDAO implements DocumentService{
 		//存储流程实例到数据库中
 		context.save(pe);
 		return pe.getId();
+	}
+	
+	public List<String> findNextStepTransition(long processInstanceId){
+		List<String> transitions = new ArrayList<String>();
+		JbpmContext context = getContext();
+		ProcessInstance pe = context.getProcessInstance(processInstanceId);
+		List<Transition> nextSteps = pe.getRootToken().getNode().getLeavingTransitions();
+		for(Transition transition:nextSteps){
+			transitions.add(transition.getName());
+		}
+		return transitions;
 	}
 }
