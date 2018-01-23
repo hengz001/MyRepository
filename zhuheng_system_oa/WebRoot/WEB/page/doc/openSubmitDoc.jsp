@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@include file="../common/common.jsp"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,6 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="WEB/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="WEB/css/mainstyle.css" />
 	<script type="text/javascript" src="WEB/js/mainjs.js"></script>
+	<script type="text/javascript">
+		function t_test(){
+		
+			document.getElementById("f1").submit();
+		}
+	</script>
   </head>
   
   <body>
@@ -39,18 +46,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				请选择一个步骤进行提交
 			</td>
 		</tr>
+		<form action="doc/doc_submitDoc.action?doc_id=${doc_id}" method="post" id="f1">
 		<tr>
-			<td class="inputline" align="center">
-				项目经理会签
-			</td>
+			<c:forEach items="${transitions}" var="flag">
+				<td class="inputline" align="center">
+					<input type="radio" name="transitionName" value="${flag}"/>${flag}
+				</td>
+			</c:forEach>
 		</tr>
 		<tr>
 			<td class="inputline" align="center">
-			<div class="button" onmouseover="buttonHover(this,'WEB/')" onmouseout="buttonNormal(this,'WEB/')">
+			<div class="button" onmouseover="buttonHover(this,'WEB/')" 
+			\onmouseout="buttonNormal(this,'WEB/')" onclick="t_test()">
 				提交
 			</div>
 			</td>
 		</tr>
+		</form>
 	</table>
 	</div>
 </body>

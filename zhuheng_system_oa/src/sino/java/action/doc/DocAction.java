@@ -42,6 +42,8 @@ public class DocAction {
 
 	private int doc_id;
 	
+	private String transitionName;
+	
 	//显示添加公文页面01
 	public String addDoc(){
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -93,7 +95,12 @@ public class DocAction {
 	
 	//
 	public String openSubmitDoc(){
-		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		Document document = documentServiceFind.findById(Document.class, doc_id);
+		long processInstanceId = document.getProcessInstanceId();
+		List<String> transitions = documentService.findNextStepTransition(processInstanceId);
+		request.setAttribute("transitions", transitions);
+		request.setAttribute("doc_id", doc_id);
 		return "openSubmitDoc";
 	}
 	//下载 
@@ -113,6 +120,25 @@ public class DocAction {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	//提交公文
+	public String submitDoc(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		User user = (User)request.getSession().getAttribute("person");
+		String uname = user.getU_name();
+		Document doc = documentServiceFind.findById(Document.class, doc_id);
+		documentService.applyDoc(uname, doc, transitionName);
+		return "submitDoc";
+	}
+	
+	//打开待审公文
+	public String openApproveingDoc() {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		User user = (User)request.getSession().getAttribute("person");
+		List<Document> appingDocs = documentService.findApproveingDoc(user);
+		request.setAttribute("appingDocs",appingDocs);
+		return "openApproveingDoc";
 	}
 
 	public int getWorkFlowId() {
@@ -161,6 +187,14 @@ public class DocAction {
 
 	public void setDoc_id(int doc_id) {
 		this.doc_id = doc_id;
+	}
+
+	public String getTransitionName() {
+		return transitionName;
+	}
+
+	public void setTransitionName(String transitionName) {
+		this.transitionName = transitionName;
 	}
 
 	//文件转换为字节数组

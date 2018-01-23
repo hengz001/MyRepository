@@ -57,9 +57,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="iconButton" style="position:absolute;left:<s:property value="#index"/>px; top:100px">
 								 <div class="iconImage" 
 									 style="background-image:url(<s:property value="m_path_c"/>);" 
-									 onclick="openWindow('<s:property value="m_address"/>',600,500)">
+									 onclick="openWindow('<s:property value="m_address"/>',1200,500)">
 								 </div>
-								 <div style="text-align:center" onclick="openWindow('<s:property value="m_address"/>',600,500,'dep')"><s:property value="m_name"/></div>
+								 <div style="text-align:center" onclick="openWindow('<s:property value="m_address"/>',1200,500,'dep')"><s:property value="m_name"/></div>
 								</div>
 							</c:when>
 							<c:otherwise>
