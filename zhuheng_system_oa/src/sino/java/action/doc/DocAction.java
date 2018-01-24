@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import sino.java.po.doc.ApproveInfo;
 import sino.java.po.doc.Document;
 import sino.java.po.user.User;
 import sino.java.po.workFlow.WorkFlow;
@@ -43,6 +44,8 @@ public class DocAction {
 	private int doc_id;
 	
 	private String transitionName;
+	
+	private String comment;
 	
 	//显示添加公文页面01
 	public String addDoc(){
@@ -141,6 +144,18 @@ public class DocAction {
 		return "openApproveingDoc";
 	}
 
+	
+	public String openApprove(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		User user = (User) request.getSession().getAttribute("person");
+		Document doc = documentServiceFind.findById(Document.class, doc_id);
+		ApproveInfo approveInfo = new ApproveInfo();
+		approveInfo.setApproveTime(new Date());
+		approveInfo.setComment(comment);
+		documentService.addApproveInfo(user,doc,approveInfo);
+		return "openApprove";
+	}
+
 	public int getWorkFlowId() {
 		return workFlowId;
 	}
@@ -195,6 +210,14 @@ public class DocAction {
 
 	public void setTransitionName(String transitionName) {
 		this.transitionName = transitionName;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	//文件转换为字节数组

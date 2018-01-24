@@ -3,6 +3,7 @@ package sino.java.service.doc;
 import java.util.List;
 
 import sino.java.dao.base.BaseDAO;
+import sino.java.po.doc.ApproveInfo;
 import sino.java.po.doc.Document;
 import sino.java.po.user.User;
 import sino.java.po.workFlow.WorkFlow;
@@ -17,4 +18,5 @@ public interface DocumentService extends BaseDAO{
 	//根据用户取得待审的公文信息
 	public List<Document> findApproveingDoc(User user);
 
+	public void addApproveInfo(User user,Document doc,ApproveInfo approveInfo) ;
 }

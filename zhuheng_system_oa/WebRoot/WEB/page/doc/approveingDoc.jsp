@@ -62,10 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td>${flag.doc_desc}</td>
 						<td>${flag.createTime}</td>
 						<td>${flag.status}</td>
-						<td>${flag.workFlow.wf_name}</td>
+						<td></td>
 						<td><a>下载</a></td>
 						<td>查看</td>
-						<td>审批</td>
+						<td><a href="javascript:void(openWindow('doc/doc_openApprove.action?doc_id=${flag.dom_id}',320,160,'open01'))">审批</a></td>
 				     </tr>
 				     </c:forEach>
 				   </c:otherwise>

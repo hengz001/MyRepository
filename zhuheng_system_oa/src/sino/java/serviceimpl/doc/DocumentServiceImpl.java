@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import sino.java.daoimpl.base.AbstractDAO;
+import sino.java.po.doc.ApproveInfo;
 import sino.java.po.doc.Document;
 import sino.java.po.user.User;
 import sino.java.po.workFlow.WorkFlow;
@@ -119,14 +120,19 @@ public class DocumentServiceImpl extends AbstractDAO implements DocumentService{
 			// 通过用户名得到任务列表
 			JbpmContext context = getContext();
 			List<Integer> docIds = new ArrayList<Integer>();
-			List<TaskInstance> tasks = context.getTaskMgmtSession()
-					.findTaskInstances(u_name);
+			List<TaskInstance> tasks = context.getTaskMgmtSession().findTaskInstances(u_name);
 			for (TaskInstance task : tasks) {
 				Integer docId = (Integer) task.getProcessInstance()
 						.getContextInstance().getVariable("document");
 				docIds.add(docId);
 			}
 			return docIds;
+		}
+		
+		public void addApproveInfo(User user,Document doc,ApproveInfo approveInfo) {
+			approveInfo.setDocument(doc);
+			approveInfo.setApprover(user);
+			save(approveInfo);
 		}
 }
 
