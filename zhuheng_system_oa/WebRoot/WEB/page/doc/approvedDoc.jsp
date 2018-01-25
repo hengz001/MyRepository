@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>待审公文</title>
+    <title>My JSP 'approvedDoc.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	--> 
+	-->
     <link rel="stylesheet" type="text/css" href="WEB/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="WEB/css/mainstyle.css" />
 	<link rel="stylesheet" type="text/css" href="WEB/css/page.css" />
@@ -27,14 +27,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="WEB/js/mainjs.js"></script>
   </head>
   
-  <body onload="init()">
+ <body onload="init()">
 	<div align="center">
 	<table width="800" height="390">
 		<tr>
 			<td height="60" align="left" colspan="3"
 				style="background-image:url(WEB/imgs/document/documentbar2.jpg);height:60px; line-height:60px">
 				<div style="width:70px; height:60px; float:left"></div>
-				<p  style="color:#0066ff; font-size:18px" class="textShadow">我的待审公文管理</p>
+				<p  style="color:#0066ff; font-size:18px" class="textShadow">我的已审公文管理</p>
 			</td>
 		</tr>
 		<tr>
@@ -52,32 +52,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<th width="10%">相关操作</th>
 				</tr>
 				<c:choose>
-				   <c:when test="${empty appingDocs}">
-				   <td colspan="8">你没有待审公文</td>
+				   <c:when test="${empty approves}">
+				   <td colspan="8">你没有审批过的公文</td>
 				   </c:when>
 				   <c:otherwise>
-				     <c:forEach items="${appingDocs}" var="flag">
+				     <c:forEach items="${approves}" var="flag">
 				       <tr>
-						<td>${flag.doc_title}</td>
-						<td>${flag.doc_desc}</td>
-						<td>${flag.createTime}</td>
-						<td>${flag.status}</td>
-						<td></td>
-						<td><a>下载</a></td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>下载</td>
 						<td>查看</td>
-						<td><a href="javascript:void(openWindow('doc/doc_openApprove.action?doc_id=${flag.dom_id}',320,160,'open01'))">审批</a>
-						/<a href="javascript:void(openWindow('doc/doc_openSubmitDoc.action?doc_id=${flag.dom_id}',320,160,'open01'))">提交</a></td>
+						<td>删除</td>
 				     </tr>
 				     </c:forEach>
 				   </c:otherwise>
 				</c:choose>
-				       
+				
 			</table>
 			</td>
 		</tr>
 		<tr>
 			<td height="30px" width="350" style="height:30px;line-height:30px;vertical-align:middle;" align="center" valign="middle">		<a href="#">我的公文</a>
-					<a href="javascript:void(openWindow('doc/doc_openApproveingDoc.action',800,400,'openApproveing'))">待审公文</a>
+				<a href="#">待审公文</a>
 				<a href="#">已审公文</a>
 				<a href="#">添加公文</a>
 			</td>

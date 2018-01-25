@@ -17,6 +17,7 @@ import sino.java.po.doc.ApproveInfo;
 import sino.java.po.doc.Document;
 import sino.java.po.user.User;
 import sino.java.po.workFlow.WorkFlow;
+import sino.java.service.doc.ApproveInfoServiceFind;
 import sino.java.service.doc.DocumentService;
 import sino.java.service.doc.DocumentServiceFind;
 import sino.java.service.workFlow.WorkFlowServiceFinder;
@@ -30,6 +31,9 @@ public class DocAction {
 	
 	@Autowired
 	private WorkFlowServiceFinder workFlowServiceFinder;
+	
+	@Autowired
+	private ApproveInfoServiceFind approveInfoServiceFind;
 	
 	private int workFlowId;
 	
@@ -96,7 +100,7 @@ public class DocAction {
 		return "myDoc";
 	}
 	
-	//
+	//打开提交公文
 	public String openSubmitDoc(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Document document = documentServiceFind.findById(Document.class, doc_id);
@@ -144,16 +148,38 @@ public class DocAction {
 		return "openApproveingDoc";
 	}
 
-	
+	//打开审批
 	public String openApprove(){
 		HttpServletRequest request = ServletActionContext.getRequest();
-		User user = (User) request.getSession().getAttribute("person");
+		request.setAttribute("doc_id", doc_id);
+		return "openApprove";
+	}
+	
+	//提交审批
+	public String approve(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		User user = (User)request.getSession().getAttribute("person"); 
+		
 		Document doc = documentServiceFind.findById(Document.class, doc_id);
+		
 		ApproveInfo approveInfo = new ApproveInfo();
 		approveInfo.setApproveTime(new Date());
 		approveInfo.setComment(comment);
-		documentService.addApproveInfo(user,doc,approveInfo);
-		return "openApprove";
+		
+		documentService.addApproveInfo(user, doc, approveInfo);
+		return "approve";
+	}
+	
+	//打开已审批公文
+	public String openApprovedDoc(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		User user = (User) request.getSession().getAttribute("person");
+		int u_id = user.getU_id();
+		List<ApproveInfo> approves = approveInfoServiceFind.findAll(ApproveInfo.class, 
+				"FROM ApproveInfo ao WHERE ao.approver.u_id="+u_id);
+		request.setAttribute("approves",approves);
+		return "openApprovedDoc";
 	}
 
 	public int getWorkFlowId() {
