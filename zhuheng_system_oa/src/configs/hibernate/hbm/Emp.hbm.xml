@@ -24,7 +24,7 @@
 	 	
 	 	<property name="flag"></property>
 		
-		<many-to-one column="dep_id" name="dep"/>
+		<many-to-one column="dep_id" name="dep" lazy="false"/>
 		
 		<one-to-one name="user" property-ref="emp" lazy="false"></one-to-one>
 	

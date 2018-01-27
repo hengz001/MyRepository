@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tr>
 			<td class="inputline" align="center">
 				<s:iterator value="#request.wfs">
-				  <a href="javascript:void(openWindow('doc/doc_addDoc02.action?workFlowId='+<s:property value="wf_id"/>,320,360,'adddoc02'))"><s:property value="wf_name"/></a>
+				  <a href="javascript:void(openWindow('doc/doc_addDoc02.action?workFlowId='+<s:property value="wf_id"/>,600,500,'adddoc02'))"><s:property value="wf_name"/></a>
 				</s:iterator>
 			</td>
 		</tr>

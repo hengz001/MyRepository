@@ -9,7 +9,7 @@
     </id>
     <property name="comment"/>
     <property name="approveTime"/>
-    <many-to-one name="document"></many-to-one>
-    <many-to-one name="approver"></many-to-one>
+    <many-to-one name="document" lazy="false"></many-to-one>
+    <many-to-one name="approver" lazy="false"></many-to-one>
   </class>
 </hibernate-mapping>

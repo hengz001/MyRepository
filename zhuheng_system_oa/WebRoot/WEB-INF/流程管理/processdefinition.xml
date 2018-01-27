@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <process-definition
-  xmlns="urn:jbpm.org:jpdl-3.2"  name="请假">
+  xmlns="urn:jbpm.org:jpdl-3.2"  name="流程测试">
    <start-state name="开始">
       <transition name="班长审批" to="班长审批"></transition>
    </start-state>

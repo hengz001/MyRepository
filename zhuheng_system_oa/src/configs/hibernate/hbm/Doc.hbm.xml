@@ -10,9 +10,9 @@
 		<property name="doc_title" />
 		<property name="doc_desc" />
 		<property name="content" length="9999999" type="binary" />
-		<many-to-one name="creator"></many-to-one>
+		<many-to-one name="creator" lazy="false"></many-to-one>
 		<property name="createTime" />
-		<many-to-one name="workFLow"></many-to-one>
+		<many-to-one name="workFlow" lazy="false"></many-to-one>
 		<property name="processInstanceId" />
 		<property name="status" />
 		<property name="loadName" />

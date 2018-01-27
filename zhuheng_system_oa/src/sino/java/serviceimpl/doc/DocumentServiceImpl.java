@@ -31,7 +31,7 @@ public class DocumentServiceImpl extends AbstractDAO implements DocumentService{
 		save(doc);
 		long processInstanceId = addProcessInstance(wf.getWf_name(), doc.getDom_id());
 		doc.setProcessInstanceId(processInstanceId);
-		doc.setWorkFLow(wf);
+		doc.setWorkFlow(wf);
 		update(doc);
 	}
 

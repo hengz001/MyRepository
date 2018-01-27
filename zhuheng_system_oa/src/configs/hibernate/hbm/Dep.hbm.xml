@@ -13,7 +13,7 @@
 		<property name="dep_desc"></property>
 		<property name="flag"></property>
 		
-		<many-to-one column="pid" name="parent" class="sino.java.po.dep.Department"/>
+		<many-to-one column="pid" name="parent" class="sino.java.po.dep.Department" lazy="false"/>
 		<set name="child" lazy="false" inverse="true">
 			<key column="pid"/>
 			<one-to-many class="sino.java.po.dep.Department"/>

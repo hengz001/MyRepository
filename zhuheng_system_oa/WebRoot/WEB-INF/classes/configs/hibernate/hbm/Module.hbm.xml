@@ -15,7 +15,7 @@
 		<property name="m_sn" ></property>
 		<property name="flag" ></property>
 		
-		<many-to-one column="pid" name="parent" class="sino.java.po.module.Module"/>
+		<many-to-one column="pid" name="parent" class="sino.java.po.module.Module" lazy="false"/>
 		
 		<set name="children" lazy="false" inverse="true">
 			<key column="pid"/>

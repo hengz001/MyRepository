@@ -12,7 +12,7 @@ public class Document {
 	private byte[] content;
 	private User creator;
 	private Date createTime;
-	private WorkFlow workFLow;
+	private WorkFlow workFlow;
 	private long processInstanceId;
 	private String status;
 	private String  loadName;
@@ -58,11 +58,11 @@ public class Document {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	public WorkFlow getWorkFLow() {
-		return workFLow;
+	public WorkFlow getWorkFlow() {
+		return workFlow;
 	}
-	public void setWorkFLow(WorkFlow workFLow) {
-		this.workFLow = workFLow;
+	public void setWorkFlow(WorkFlow workFlow) {
+		this.workFlow = workFlow;
 	}
 	public long getProcessInstanceId() {
 		return processInstanceId;

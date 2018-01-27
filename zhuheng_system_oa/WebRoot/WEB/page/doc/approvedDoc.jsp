@@ -57,16 +57,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   </c:when>
 				   <c:otherwise>
 				     <c:forEach items="${approves}" var="flag">
-				       <tr>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>下载</td>
-						<td>查看</td>
-						<td>删除</td>
-				     </tr>
+				    	<tr>
+							<td>${flag.document.doc_title}</td>
+							<td>${flag.document.doc_desc}</td>
+							<td>${flag.approveTime}</td>
+							<td>${flag.document.status}</td>
+							<td>${flag.document.doc_title}</td>
+								<td><a href="doc/doc_downloadDoc.action?doc_id=${flag.document.dom_id}">下载</a></td>
+							<td><a href="javascript:void(openWindow('doc/doc_openApprovedHistory.action?doc_id=${flag.document.dom_id}',600,500,'openHistory'))">
+								查看</a></td>
+							<td>删除</td>
+				     	</tr>
 				     </c:forEach>
 				   </c:otherwise>
 				</c:choose>
@@ -75,10 +76,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td>
 		</tr>
 		<tr>
-			<td height="30px" width="350" style="height:30px;line-height:30px;vertical-align:middle;" align="center" valign="middle">		<a href="#">我的公文</a>
-				<a href="#">待审公文</a>
-				<a href="#">已审公文</a>
-				<a href="#">添加公文</a>
+			<td height="30px" width="350" style="height:30px;line-height:30px;vertical-align:middle;" align="center" valign="middle">
+				<a href="javascript:void(openWindow('doc/doc_myDoc.action',1200,500,'dep'))">
+					我的公文</a>
+				<a href="javascript:void(openWindow('doc/doc_openApproveingDoc.action',1200,500,'dep'))">
+					待审公文</a>
+				<a href="javascript:void(openWindow('doc/doc_openApprovedDoc.action',1200,500,'dep'))">
+					已审公文</a>
+				<a href="javascript:void(openWindow('doc/doc_addDoc.action',600,500,'add'))">
+					添加公文</a>
 			</td>
 			<td width="110" style="height:30px;line-height:30px;vertical-align:middle;" align="left">
 

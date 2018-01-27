@@ -181,6 +181,18 @@ public class DocAction {
 		request.setAttribute("approves",approves);
 		return "openApprovedDoc";
 	}
+	
+	//历史记录
+	public String openApprovedHistory(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		//获得approveInfo
+		List<ApproveInfo> approveHistory = approveInfoServiceFind.findAll(ApproveInfo.class, 
+				"FROM ApproveInfo ao WHERE ao.document.dom_id="+doc_id);
+		if(approveHistory.size() != 0){
+			request.setAttribute("approveHistory", approveHistory);
+		}
+		return "openApprovedHistory";
+	}
 
 	public int getWorkFlowId() {
 		return workFlowId;

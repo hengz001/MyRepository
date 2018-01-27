@@ -17,6 +17,7 @@
 			<result name="openApprove">/WEB/page/doc/openApporve.jsp</result>
 			<result name="approve">/WEB/page/common/close.html</result>
 			<result name="openApprovedDoc">/WEB/page/doc/approvedDoc.jsp</result>
+			<result name="openApprovedHistory">/WEB/page/doc/approveHistory.jsp</result>
 		</action>
 	</package>
 </struts>
